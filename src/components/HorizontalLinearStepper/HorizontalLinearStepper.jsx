@@ -11,9 +11,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
   },
-  button: {
-    marginRight: theme.spacing(1),
-  },
   instructions: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
@@ -63,47 +60,45 @@ const HorizontalLinearStepper = (props) => {
       </Stepper>
       <div className="buttons">
         {step === stepNames.length - 1 ? (
-          <div>
-            <Typography className={classes.instructions}>
+          <div className="buttons">
+            {/* <Typography className={classes.instructions}>
               All steps completed - you&apos;re done!!
-            </Typography>
-            <Button onClick={handleReset} className={classes.button}>
+            </Typography> */}
+            <Button onClick={handleReset} className="normal-button">
               Reset
             </Button>
-            <Button onClick={handleBack} className={classes.button}>
+            <Button onClick={handleBack} className="normal-button">
               Back
             </Button>
             <Button
               variant="contained"
               color="primary"
               onClick={() => {}}
-              className={classes.button}
+              className="highlighted-button"
             >
               Download
             </Button>
           </div>
         ) : (
-          <div>
-            <div>
-              <Button onClick={handleReset} className={classes.button}>
-                Reset
-              </Button>
-              <Button
-                disabled={step === 0}
-                onClick={handleBack}
-                className={classes.button}
-              >
-                Back
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleNext}
-                className={classes.button}
-              >
-                {step === stepNames.length - 2 ? "Finish" : "Next"}
-              </Button>
-            </div>
+          <div className="buttons">
+            <Button onClick={handleReset} className="normal-button">
+              Reset
+            </Button>
+            <Button
+              disabled={step === 0}
+              onClick={handleBack}
+              className="normal-button"
+            >
+              Back
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleNext}
+              className="highlighted-button"
+            >
+              {step === stepNames.length - 2 ? "Finish" : "Next"}
+            </Button>
           </div>
         )}
       </div>
