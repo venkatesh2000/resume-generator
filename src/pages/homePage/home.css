@@ -1,0 +1,47 @@
+.home {
+  position: relative;
+}
+
+.homeImage {
+  width: 100%;
+  object-fit: cover;
+  position: absolute;
+  opacity: 0.6;
+}
+
+.statement {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Lora", "serif";
+  /* color: #321f28; */
+  color: black;
+  text-align: center;
+  margin-top: 5rem;
+  position: absolute;
+  z-index: 999;
+}
+
+.bigStatement {
+  width: 45%;
+  margin: 0 auto;
+  font-weight: bolder;
+  font-size: 40px;
+}
+
+.smallStatement {
+  width: 50%;
+  margin: 0 auto;
+  padding-top: 10px;
+}
+
+.steps {
+  padding-bottom: 2em;
+  font-weight: bold;
+}
+
+.buildButton {
+  font-size: 18px;
+  font-weight: 300;
+  cursor: pointer;
+}

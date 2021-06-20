@@ -35,6 +35,7 @@ const TitleBar = () => {
           <Typography variant="h5" className={classes.title}>
             RESUME BUILDER
           </Typography>
+          <Button color="inherit">Login</Button>
           <Button color="inherit">Logout</Button>
         </Toolbar>
       </AppBar>
