@@ -29,7 +29,7 @@ function Home() {
           <h3>3. Download your Resume</h3>
         </div>
         <button type="button" class="btn btn-success buildButton">
-          <Link className="link" to="/informtaion">
+          <Link className="link" to="/information">
             Build My Resume Now
           </Link>
         </button>
