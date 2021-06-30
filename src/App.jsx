@@ -15,27 +15,38 @@ import Login from "./pages/login/Login";
 import SignUp from "./pages/signup/SignUp";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-const getForm = (step) => {
+const getForm = (step, setStep, maxSteps) => {
   switch (step) {
     case 0:
-      return <PersonalInfo />;
+      return <PersonalInfo step={step} setStep={setStep} maxSteps={maxSteps} />;
     case 1:
-      return <Education />;
+      return <Education step={step} setStep={setStep} maxSteps={maxSteps} />;
     case 2:
-      return <Skills />;
+      return <Skills step={step} setStep={setStep} maxSteps={maxSteps} />;
     case 3:
-      return <Experiences />;
+      return <Experiences step={step} setStep={setStep} maxSteps={maxSteps} />;
     case 4:
-      return <Projects />;
+      return <Projects step={step} setStep={setStep} maxSteps={maxSteps} />;
     case 5:
-      return <Languages />;
+      return <Languages step={step} setStep={setStep} maxSteps={maxSteps} />;
     default:
-      return <Preview />;
+      return <Preview step={step} setStep={setStep} maxSteps={maxSteps} />;
   }
 };
 
 const App = () => {
   const [step, setStep] = React.useState(0);
+  const stepNames = [
+    "Personal Info",
+    "Skills",
+    "Education",
+    "Experiences",
+    "Projects",
+    "Languages",
+    "Preview",
+  ];
+  const optionalSteps = [3, 4];
+
   return (
     <Router>
       <NavBar />
@@ -61,8 +72,12 @@ const App = () => {
             />
 
             <NavBar />
-            <HorizontalLinearStepper step={step} setStep={setStep} />
-            {getForm(step)}
+            <HorizontalLinearStepper
+              step={step}
+              stepNames={stepNames}
+              optionalSteps={optionalSteps}
+            />
+            {getForm(step, setStep, stepNames.length)}
           </div>
         </Route>
       </Switch>
