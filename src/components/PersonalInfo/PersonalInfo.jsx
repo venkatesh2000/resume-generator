@@ -55,93 +55,54 @@ const PersonalInfo = (props) => {
       /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
 
     setIsValidated(false);
-    setErrors({
+
+    const newErrors = {
       name: false,
       email: false,
       pno: false,
       github: false,
       linkedin: false,
       website: false,
-    });
-    setErrorMessages({
+    };
+    const newErrorMessages = {
       name: "",
       email: "",
       pno: "",
       github: "",
       linkedin: "",
       website: "",
-    });
-
+    };
     if (!values.name.length) {
-      setErrors((prev) => ({
-        ...prev,
-        name: true,
-      }));
-      setErrorMessages((prev) => ({
-        ...prev,
-        name: "This is a required field!",
-      }));
+      newErrors["name"] = true;
+      newErrorMessages["name"] = "This is a required field!";
     }
     if (!values.pno.length) {
-      setErrors((prev) => ({
-        ...prev,
-        pno: true,
-      }));
-      setErrorMessages((prev) => ({
-        ...prev,
-        pno: "This is a required field!",
-      }));
+      newErrors["pno"] = true;
+      newErrorMessages["pno"] = "This is a required field!";
     }
     if (!values.email.length) {
-      setErrors((prev) => ({
-        ...prev,
-        email: true,
-      }));
-      setErrorMessages((prev) => ({
-        ...prev,
-        email: "This is a required field!",
-      }));
+      newErrors["email"] = true;
+      newErrorMessages["email"] = "This is a required field!";
     }
     if (values.email.length && !emailRegex.test(values.email)) {
-      setErrors((prev) => ({
-        ...prev,
-        email: true,
-      }));
-      setErrorMessages((prev) => ({
-        ...prev,
-        email: "Please enter a valid email address!",
-      }));
+      newErrors["email"] = true;
+      newErrorMessages["email"] = "Please enter a valid email address!";
     }
     if (values.github.length && !urlRegex.test(values.github)) {
-      setErrors((prev) => ({
-        ...prev,
-        github: true,
-      }));
-      setErrorMessages((prev) => ({
-        ...prev,
-        github: "Please enter a valid URL!",
-      }));
+      newErrors["github"] = true;
+      newErrorMessages["github"] = "Please enter a valid URL!";
     }
     if (values.linkedin.length && !urlRegex.test(values.linkedin)) {
-      setErrors((prev) => ({
-        ...prev,
-        linkedin: true,
-      }));
-      setErrorMessages((prev) => ({
-        ...prev,
-        linkedin: "Please enter a valid URL!",
-      }));
+      newErrors["linkedin"] = true;
+      newErrorMessages["linkedin"] = "Please enter a valid URL!";
     }
     if (values.website.length && !urlRegex.test(values.website)) {
-      setErrors((prev) => ({
-        ...prev,
-        website: true,
-      }));
-      setErrorMessages((prev) => ({
-        ...prev,
-        website: "Please enter a valid URL!",
-      }));
+      newErrors["website"] = true;
+      newErrorMessages["website"] = "Please enter a valid URL!";
     }
+
+    setErrors({ ...newErrors });
+    setErrorMessages({ ...newErrorMessages });
     setIsValidated(true);
   };
   const handleNext = () => {
@@ -172,9 +133,7 @@ const PersonalInfo = (props) => {
               variant="outlined"
               type="email"
               value={values.email}
-              onChange={(event) => {
-                onValueChange("email", event);
-              }}
+              onChange={(event) => onValueChange("email", event)}
               error={errors.email}
               helperText={errors.email && errorMessages.email}
               required
@@ -183,9 +142,7 @@ const PersonalInfo = (props) => {
               label="Phone Number"
               variant="outlined"
               value={values.pno}
-              onChange={(event) => {
-                onValueChange("pno", event);
-              }}
+              onChange={(event) => onValueChange("pno", event)}
               error={errors.pno}
               helperText={errors.pno && errorMessages.pno}
               required
@@ -199,33 +156,27 @@ const PersonalInfo = (props) => {
           <form className={classes.root} autoComplete="on">
             <TextField
               label="GitHub URL"
+              variant="outlined"
               value={values.github}
-              onChange={(event) => {
-                onValueChange("github", event);
-              }}
+              onChange={(event) => onValueChange("github", event)}
               error={errors.github}
               helperText={errors.github && errorMessages.github}
-              variant="outlined"
             />
             <TextField
               label="LinkedIn URL"
+              variant="outlined"
               value={values.linkedin}
-              onChange={(event) => {
-                onValueChange("linkedin", event);
-              }}
+              onChange={(event) => onValueChange("linkedin", event)}
               error={errors.linkedin}
               helperText={errors.linkedin && errorMessages.linkedin}
-              variant="outlined"
             />
             <TextField
               label="Website URL"
+              variant="outlined"
               value={values.website}
-              onChange={(event) => {
-                onValueChange("website", event);
-              }}
+              onChange={(event) => onValueChange("website", event)}
               error={errors.website}
               helperText={errors.website && errorMessages.website}
-              variant="outlined"
             />
           </form>
         </CardContent>
