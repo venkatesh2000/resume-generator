@@ -49,7 +49,6 @@ const App = () => {
 
   return (
     <Router>
-      <NavBar />
       <Switch>
         <Route exact path="/">
           <Home />

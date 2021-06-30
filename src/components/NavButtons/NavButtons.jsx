@@ -1,4 +1,5 @@
 import Button from "@material-ui/core/Button";
+import "./NavButtons.css";
 
 const NavButtons = (props) => {
   const { step, setStep, maxSteps, validateInfo } = props;

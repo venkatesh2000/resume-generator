@@ -4,7 +4,6 @@ import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Typography from "@material-ui/core/Typography";
-import "./HorizontalLinearStepper.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
