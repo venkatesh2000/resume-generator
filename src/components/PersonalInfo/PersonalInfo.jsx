@@ -11,7 +11,7 @@ const PersonalInfo = (props) => {
     root: {
       "& > *": {
         marginTop: theme.spacing(2),
-        width: "50ch",
+        width: "75ch",
       },
     },
   }));

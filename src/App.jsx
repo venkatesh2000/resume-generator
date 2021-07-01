@@ -15,7 +15,7 @@ import Login from "./pages/login/Login";
 import SignUp from "./pages/signup/SignUp";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-const getForm = (step, setStep, maxSteps) => {
+const getForm = (step, setStep, numberOfExps, setNumberOfExps, maxSteps) => {
   switch (step) {
     case 0:
       return <PersonalInfo step={step} setStep={setStep} maxSteps={maxSteps} />;
@@ -24,9 +24,23 @@ const getForm = (step, setStep, maxSteps) => {
     case 2:
       return <Skills step={step} setStep={setStep} maxSteps={maxSteps} />;
     case 3:
-      return <Experiences step={step} setStep={setStep} maxSteps={maxSteps} />;
+      return (
+        <Experiences
+          step={step}
+          setStep={setStep}
+          setNumberOfExps={setNumberOfExps}
+          maxSteps={maxSteps}
+        />
+      );
     case 4:
-      return <Projects step={step} setStep={setStep} maxSteps={maxSteps} />;
+      return (
+        <Projects
+          step={step}
+          setStep={setStep}
+          numberOfExps={numberOfExps}
+          maxSteps={maxSteps}
+        />
+      );
     case 5:
       return <Languages step={step} setStep={setStep} maxSteps={maxSteps} />;
     default:
@@ -36,10 +50,11 @@ const getForm = (step, setStep, maxSteps) => {
 
 const App = () => {
   const [step, setStep] = React.useState(0);
+  const [numberOfExps, setNumberOfExps] = React.useState(0);
   const stepNames = [
     "Personal Info",
-    "Skills",
     "Education",
+    "Skills",
     "Experiences",
     "Projects",
     "Languages",
@@ -49,6 +64,7 @@ const App = () => {
 
   return (
     <Router>
+      <NavBar />
       <Switch>
         <Route exact path="/">
           <Home />
@@ -70,13 +86,18 @@ const App = () => {
               href="https://fonts.googleapis.com/icon?family=Material+Icons"
             />
 
-            <NavBar />
             <HorizontalLinearStepper
               step={step}
               stepNames={stepNames}
               optionalSteps={optionalSteps}
             />
-            {getForm(step, setStep, stepNames.length)}
+            {getForm(
+              step,
+              setStep,
+              numberOfExps,
+              setNumberOfExps,
+              stepNames.length
+            )}
           </div>
         </Route>
       </Switch>
