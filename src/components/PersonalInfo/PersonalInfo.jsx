@@ -6,16 +6,15 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import NavButtons from "../NavButtons/NavButtons.jsx";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      marginTop: theme.spacing(2),
-      width: "50ch",
-    },
-  },
-}));
-
 const PersonalInfo = (props) => {
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      "& > *": {
+        marginTop: theme.spacing(2),
+        width: "50ch",
+      },
+    },
+  }));
   const classes = useStyles();
   const { step, setStep } = props;
   const [values, setValues] = React.useState({
@@ -131,7 +130,6 @@ const PersonalInfo = (props) => {
             <TextField
               label="E-mail"
               variant="outlined"
-              type="email"
               value={values.email}
               onChange={(event) => onValueChange("email", event)}
               error={errors.email}
