@@ -1,6 +1,6 @@
 import React from "react";
-import NavButtons from "../NavButtons/NavButtons.jsx";
 import Experience from "./Experience.jsx";
+import NavButtons from "../NavButtons/NavButtons.jsx";
 
 const Experiences = (props) => {
   const { step, setStep, setNumberOfExps } = props;
@@ -115,6 +115,7 @@ const Experiences = (props) => {
         break;
       }
     }
+
     if (!flag) {
       setNumberOfExps(exps);
       setStep(step + 1);
