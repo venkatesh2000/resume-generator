@@ -7,7 +7,6 @@ import Skills from "./components/Skills/Skills.jsx";
 import Education from "./components/Education/Education.jsx";
 import Experiences from "./components/Experiences/Experiences.jsx";
 import Projects from "./components/Projects/Projects.jsx";
-import Languages from "./components/Languages/Languages.jsx";
 import Preview from "./components/Preview/Preview.jsx";
 import NavBar from "./components/navBar/NavBar";
 import Home from "./pages/homePage/Home";

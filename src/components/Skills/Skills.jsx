@@ -89,7 +89,7 @@ const Skills = (props) => {
   };
   React.useEffect(() => {
     if (isValidated) handleNext();
-  }, [isValidated, handleNext]);
+  });
 
   return (
     <div>

@@ -107,7 +107,7 @@ const Education = (props) => {
   };
   React.useEffect(() => {
     if (isValidated) handleNext();
-  }, [isValidated, handleNext]);
+  });
 
   return (
     <div>

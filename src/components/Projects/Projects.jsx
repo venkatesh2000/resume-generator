@@ -112,7 +112,7 @@ const Projects = (props) => {
   };
   React.useEffect(() => {
     if (isValidated) handleNext();
-  }, [isValidated, handleNext]);
+  });
   const InitWhenExpIsOne = () => {
     const newValues = {
       p1: { ...value },
