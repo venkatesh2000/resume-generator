@@ -81,7 +81,16 @@ const getForm = (
     //   return <Languages step={step} setStep={setStep} maxSteps={maxSteps} />;
     default: {
       const html = resumeTemplate(resume);
-      return <Preview step={step} setStep={setStep} maxSteps={maxSteps} />;
+      console.log(html);
+
+      return (
+        <Preview
+          html={html}
+          step={step}
+          setStep={setStep}
+          maxSteps={maxSteps}
+        />
+      );
     }
   }
 };
@@ -100,8 +109,6 @@ const App = () => {
     "Preview",
   ];
   const optionalSteps = [3, 4];
-
-  console.log(resume);
 
   return (
     <Router>

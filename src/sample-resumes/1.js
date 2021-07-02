@@ -361,16 +361,16 @@ const resumeTemplate = (resume) => {
                 <p class="list-spacing list-constraint">${s4}</p>
                 </div>
                 <div class="horizontal-list">
-                <p class="list-spacing list-constraint">${remainingSkills[0]}</p>
-                <p class="list-spacing list-constraint">${remainingSkills[1]}</p>
+                <p class="list-spacing list-constraint">${remainingSkills[0] === undefined || remainingSkills[0] === "" ? "" : remainingSkills[0]}</p>
+                <p class="list-spacing list-constraint">${remainingSkills[1] === undefined || remainingSkills[1] === "" ? "" : remainingSkills[1]}</p>
                 </div>
                 <div class="horizontal-list">
-                <p class="list-spacing list-constraint">${remainingSkills[2]}</p>
-                <p class="list-spacing list-constraint">${remainingSkills[3]}</p>
+                <p class="list-spacing list-constraint">${remainingSkills[2] === undefined || remainingSkills[2] === "" ? "" : remainingSkills[2]}</p>
+                <p class="list-spacing list-constraint">${remainingSkills[3] === undefined || remainingSkills[3] === "" ? "" : remainingSkills[3]}</p>
                 </div>
                 <div class="horizontal-list">
-                <p class="list-spacing list-constraint">${remainingSkills[4]}</p>
-                <p class="list-spacing list-constraint">${remainingSkills[5]}</p>
+                <p class="list-spacing list-constraint">${remainingSkills[4] === undefined || remainingSkills[4] === "" ? "" : remainingSkills[4]}</p>
+                <p class="list-spacing list-constraint">${remainingSkills[5] === undefined || remainingSkills[5] === "" ? "" : remainingSkills[5]}</p>
                 </div>
                 <!-- 			<p class="rela-block caps side-header">Interests</p>
                     <p class="rela-block list-spacing">Coding</p>
@@ -404,7 +404,7 @@ const resumeTemplate = (resume) => {
                 </p>`
         }
         else {
-            html = `<p class="rela-block social mb-4">
+            html += `<p class="rela-block social mb-4">
                 <span style="padding-right: 15px; font-size: 20px"
                     ><i class="fab fa-linkedin"></i></span
                 >${linkedin}
@@ -422,7 +422,7 @@ const resumeTemplate = (resume) => {
         </p>
         <p class="justified mt-0 mb-3" style="font-size: 17px">${cgpa} CGPA</p>`
 
-    if (exps !== []) {
+    if (exps.length !== 0) {
         html += `<div class="rela-block caps greyed">Experience</div>`
 
         for (let exp of exps) {
@@ -439,7 +439,7 @@ const resumeTemplate = (resume) => {
         }
     }
 
-    if (pros !== []) {
+    if (pros.length !== 0) {
         html += `<div class="rela-block caps greyed">Projects</div>`
 
         for (let pro of pros) {
