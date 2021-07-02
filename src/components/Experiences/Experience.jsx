@@ -29,10 +29,10 @@ const Experience = (props) => {
             <TextField
               label="Job"
               variant="outlined"
-              value={values.job}
-              onChange={(event) => onValueChange("job", event)}
-              error={errors.job}
-              helperText={errors.job && errorMessages.job}
+              value={values.company}
+              onChange={(event) => onValueChange("company", event)}
+              error={errors.company}
+              helperText={errors.company && errorMessages.company}
             />
             <TextField
               label="Role"

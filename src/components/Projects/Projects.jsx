@@ -3,7 +3,7 @@ import Project from "./Project.jsx";
 import NavButtons from "../NavButtons/NavButtons.jsx";
 
 const Projects = (props) => {
-  const { step, setStep, numberOfExps } = props;
+  const { resume, setResume, step, setStep, numberOfExps } = props;
   const value = {
     title: "",
     link: "",
@@ -108,7 +108,10 @@ const Projects = (props) => {
     else if (numberOfExps === 1) minProjects = 1;
     else minProjects = 0;
 
-    if (!flag && projects >= minProjects) setStep(step + 1);
+    if (!flag && projects >= minProjects) {
+      setResume({ ...resume, ...values });
+      setStep(step + 1);
+    }
   };
   React.useEffect(() => {
     if (isValidated) handleNext();

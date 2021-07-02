@@ -3,23 +3,23 @@ import Experience from "./Experience.jsx";
 import NavButtons from "../NavButtons/NavButtons.jsx";
 
 const Experiences = (props) => {
-  const { step, setStep, setNumberOfExps } = props;
+  const { resume, setResume, step, setStep, setNumberOfExps } = props;
   const value = {
-    job: "",
+    company: "",
     role: "",
     from: "",
     to: "",
     desc: "",
   };
   const error = {
-    job: false,
+    company: false,
     role: false,
     from: false,
     to: false,
     desc: false,
   };
   const errorMessage = {
-    job: "",
+    company: "",
     role: "",
     from: "",
     to: "",
@@ -56,14 +56,14 @@ const Experiences = (props) => {
     let currExps = 0;
     for (let exp in values) {
       let newError = {
-        job: true,
+        company: true,
         role: true,
         from: true,
         to: true,
         desc: true,
       };
       let newErrorMessage = {
-        job: "Please provide complete info for this experience!",
+        company: "Please provide complete info for this experience!",
         role: "Please provide complete info for this experience!",
         from: "Please provide complete info for this experience!",
         to: "Please provide complete info for this experience!",
@@ -84,14 +84,14 @@ const Experiences = (props) => {
       if (count === 5) ++currExps;
       if (!flag) {
         newError = {
-          job: false,
+          company: false,
           role: false,
           from: false,
           to: false,
           desc: false,
         };
         newErrorMessage = {
-          job: "",
+          company: "",
           role: "",
           from: "",
           to: "",
@@ -118,6 +118,7 @@ const Experiences = (props) => {
 
     if (!flag) {
       setNumberOfExps(exps);
+      setResume({ ...resume, ...values });
       setStep(step + 1);
     }
   };

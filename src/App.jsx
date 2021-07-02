@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import HorizontalLinearStepper from "./components/HorizontalLinearStepper/HorizontalLinearStepper";
 // import TitleBar from "./components/TitleBar/TitleBar.jsx";
@@ -12,19 +13,53 @@ import NavBar from "./components/navBar/NavBar";
 import Home from "./pages/homePage/Home";
 import Login from "./pages/login/Login";
 import SignUp from "./pages/signup/SignUp";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import resumeTemplate from "./sample-resumes/1.js";
 
-const getForm = (step, setStep, numberOfExps, setNumberOfExps, maxSteps) => {
+const getForm = (
+  resume,
+  setResume,
+  step,
+  setStep,
+  numberOfExps,
+  setNumberOfExps,
+  maxSteps
+) => {
   switch (step) {
     case 0:
-      return <PersonalInfo step={step} setStep={setStep} maxSteps={maxSteps} />;
+      return (
+        <PersonalInfo
+          resume={resume}
+          setResume={setResume}
+          step={step}
+          setStep={setStep}
+          maxSteps={maxSteps}
+        />
+      );
     case 1:
-      return <Education step={step} setStep={setStep} maxSteps={maxSteps} />;
+      return (
+        <Education
+          resume={resume}
+          setResume={setResume}
+          step={step}
+          setStep={setStep}
+          maxSteps={maxSteps}
+        />
+      );
     case 2:
-      return <Skills step={step} setStep={setStep} maxSteps={maxSteps} />;
+      return (
+        <Skills
+          resume={resume}
+          setResume={setResume}
+          step={step}
+          setStep={setStep}
+          maxSteps={maxSteps}
+        />
+      );
     case 3:
       return (
         <Experiences
+          resume={resume}
+          setResume={setResume}
           step={step}
           setStep={setStep}
           setNumberOfExps={setNumberOfExps}
@@ -34,6 +69,8 @@ const getForm = (step, setStep, numberOfExps, setNumberOfExps, maxSteps) => {
     case 4:
       return (
         <Projects
+          resume={resume}
+          setResume={setResume}
           step={step}
           setStep={setStep}
           numberOfExps={numberOfExps}
@@ -42,12 +79,15 @@ const getForm = (step, setStep, numberOfExps, setNumberOfExps, maxSteps) => {
       );
     // case 5:
     //   return <Languages step={step} setStep={setStep} maxSteps={maxSteps} />;
-    default:
+    default: {
+      const html = resumeTemplate(resume);
       return <Preview step={step} setStep={setStep} maxSteps={maxSteps} />;
+    }
   }
 };
 
 const App = () => {
+  const [resume, setResume] = React.useState({});
   const [step, setStep] = React.useState(0);
   const [numberOfExps, setNumberOfExps] = React.useState(0);
   const stepNames = [
@@ -60,6 +100,8 @@ const App = () => {
     "Preview",
   ];
   const optionalSteps = [3, 4];
+
+  console.log(resume);
 
   return (
     <Router>
@@ -91,6 +133,8 @@ const App = () => {
               optionalSteps={optionalSteps}
             />
             {getForm(
+              resume,
+              setResume,
               step,
               setStep,
               numberOfExps,

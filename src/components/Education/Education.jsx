@@ -15,7 +15,7 @@ const Education = (props) => {
     },
   }));
   const classes = useStyles();
-  const { step, setStep } = props;
+  const { resume, setResume, step, setStep } = props;
   const [values, setValues] = React.useState({
     college: "",
     from: "",
@@ -102,6 +102,7 @@ const Education = (props) => {
   };
   const handleNext = () => {
     if (!Object.values(errors).includes(true)) {
+      setResume({ ...resume, ...values });
       setStep(step + 1);
     }
   };
