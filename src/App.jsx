@@ -41,8 +41,8 @@ const getForm = (step, setStep, numberOfExps, setNumberOfExps, maxSteps) => {
           maxSteps={maxSteps}
         />
       );
-    case 5:
-      return <Languages step={step} setStep={setStep} maxSteps={maxSteps} />;
+    // case 5:
+    //   return <Languages step={step} setStep={setStep} maxSteps={maxSteps} />;
     default:
       return <Preview step={step} setStep={setStep} maxSteps={maxSteps} />;
   }
@@ -57,7 +57,7 @@ const App = () => {
     "Skills",
     "Experiences",
     "Projects",
-    "Languages",
+    // "Languages",
     "Preview",
   ];
   const optionalSteps = [3, 4];
