@@ -2,7 +2,8 @@ import Button from "@material-ui/core/Button";
 import "./NavButtons.css";
 
 const NavButtons = (props) => {
-  const { step, setStep, maxSteps, validateInfo } = props;
+  const { step, setStep, maxSteps, validateInfo, resume, handleDownload } =
+    props;
 
   const handleBack = () => setStep(step - 1);
   const handleReset = () => setStep(0);
@@ -23,7 +24,9 @@ const NavButtons = (props) => {
           <Button
             variant="contained"
             color="primary"
-            onClick={() => {}}
+            onClick={() => {
+              handleDownload(resume);
+            }}
             className="highlighted-button"
           >
             Download

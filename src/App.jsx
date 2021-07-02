@@ -14,6 +14,27 @@ import Home from "./pages/homePage/Home";
 import Login from "./pages/login/Login";
 import SignUp from "./pages/signup/SignUp";
 import resumeTemplate from "./sample-resumes/1.js";
+import axios from "axios";
+import { saveAs } from "file-saver";
+
+const createAndDownloadPDF = (resume) => {
+  axios
+    .post("http://localhost:5000/create-pdf", resume)
+    .then(() => {
+      axios
+        .get("http://localhost:5000/fetch-pdf", { responseType: "arraybuffer" })
+        .then((res) => {
+          const pdfBlob = new Blob([res.data], { type: "application/pdf" });
+          saveAs(pdfBlob, `${resume["name"]} - Resume.pdf`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 const getForm = (
   resume,
@@ -81,14 +102,15 @@ const getForm = (
     //   return <Languages step={step} setStep={setStep} maxSteps={maxSteps} />;
     default: {
       const html = resumeTemplate(resume);
-      console.log(html);
 
       return (
         <Preview
-          html={html}
           step={step}
           setStep={setStep}
           maxSteps={maxSteps}
+          html={html}
+          resume={resume}
+          handleDownload={createAndDownloadPDF}
         />
       );
     }

@@ -463,4 +463,4 @@ const resumeTemplate = (resume) => {
     return html
 }
 
-export default resumeTemplate
+module.exports = resumeTemplate
