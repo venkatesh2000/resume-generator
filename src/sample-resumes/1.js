@@ -227,6 +227,7 @@ const resumeTemplate = (resume) => {
                 padding-left: 10px;
                 margin-bottom: 0px;
                 cursor: pointer;
+                font-size: 15px
             }
 
             .side-header {
@@ -396,18 +397,18 @@ const resumeTemplate = (resume) => {
                 >${website}
                 </p>`
         }
-        else if (github !== "") {
-            html += `<p class="rela-block social mb-0">
-                <span style="padding-right: 15px; font-size: 20px"
-                    ><i class="fab fa-github"></i></span
-                >${github}
-                </p>`
-        }
-        else {
+        if (linkedin !== "") {
             html += `<p class="rela-block social mb-4">
                 <span style="padding-right: 15px; font-size: 20px"
                     ><i class="fab fa-linkedin"></i></span
                 >${linkedin}
+                </p>`
+        }
+        if (github !== "") {
+            html += `<p class="rela-block social mb-0">
+                <span style="padding-right: 15px; font-size: 20px"
+                    ><i class="fab fa-github"></i></span
+                >${github}
                 </p>`
         }
     }
