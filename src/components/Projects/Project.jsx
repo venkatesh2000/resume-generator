@@ -43,6 +43,22 @@ const Project = (props) => {
               helperText={errors.link && errorMessages.link}
             />
             <TextField
+              label="Start Month and Year"
+              variant="outlined"
+              value={values.from}
+              onChange={(event) => onValueChange("from", event)}
+              error={errors.from}
+              helperText={errors.from && errorMessages.from}
+            />
+            <TextField
+              label="End Month and Year"
+              variant="outlined"
+              value={values.to}
+              onChange={(event) => onValueChange("to", event)}
+              error={errors.to}
+              helperText={errors.to && errorMessages.to}
+            />
+            <TextField
               label="Description"
               variant="outlined"
               value={values.desc}

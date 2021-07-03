@@ -17,16 +17,22 @@ const Projects = (props) => {
   const value = {
     title: "",
     link: "",
+    from: "",
+    to: "",
     desc: "",
   };
   const error = {
     title: false,
     link: false,
+    from: false,
+    to: false,
     desc: false,
   };
   const errorMessage = {
     title: "",
     link: "",
+    from: "",
+    to: "",
     desc: "",
   };
 
@@ -65,11 +71,15 @@ const Projects = (props) => {
       let newError = {
         title: true,
         link: true,
+        from: true,
+        to: true,
         desc: true,
       };
       let newErrorMessage = {
         title: "Please provide complete info for this project!",
         link: "Please provide complete info for this project!",
+        from: "Please provide complete info for this project!",
+        to: "Please provide complete info for this project!",
         desc: "Please provide complete info for this project!",
       };
 
@@ -88,16 +98,20 @@ const Projects = (props) => {
         }
       }
 
-      if (count === 3) ++currProjects;
+      if (count === 5) ++currProjects;
       if (!flag) {
         newError = {
           title: false,
           link: false,
+          from: false,
+          to: false,
           desc: false,
         };
         newErrorMessage = {
           title: "",
           link: "",
+          from: "",
+          to: "",
           desc: "",
         };
       }

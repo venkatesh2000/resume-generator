@@ -392,22 +392,22 @@ const resumeTemplate = (resume) => {
         html += `<p class="rela-block caps side-header">Links</p>`;
 
         if (website !== "") {
-            html += `<a class="rela-block social mb-0">
-                <span style="padding-right: 15px; font-size: 20px"
+            html += `<p class="rela-block social mb-0">
+                <span style="padding-right: 15px; font-size: 15px"
                     ><i class="fas fa-globe"></i></span
                 ><span><a href="${website}">${website}</a></span>
-                </a>`
+                </p>`
         }
         if (linkedin !== "") {
-            html += `<a class="rela-block social mb-4">
-                <span style="padding-right: 15px; font-size: 20px"
+            html += `<p class="rela-block social mb-0">
+                <span style="padding-right: 15px; font-size: 15px"
                     ><i class="fab fa-linkedin"></i></span
                 ><span><a href="${linkedin}">${linkedin}</a></span>
-                </a>`
+                </p>`
         }
         if (github !== "") {
             html += `<p class="rela-block social mb-0">
-                <span style="padding-right: 15px; font-size: 20px"
+                <span style="padding-right: 15px; font-size: 15px"
                     ><i class="fab fa-github"></i></span
                 ><span><a href="${github}">${github}</a></span>
                 </p>`
@@ -447,9 +447,12 @@ const resumeTemplate = (resume) => {
         for (let pro of pros) {
             html += `
             <h3>${pro["title"]}</h3>
-            <p class="light mt-1 mb-2" style="font-size: 17px">
+            <p class="text-muted mt-1 mb-2" style="font-size: 17px">
                 <span class="mr-2"><i class="fas fa-link"></i></span
                 ><span><a href="${pro["link"]}">${pro["link"]}</a></span>
+                <span class="ml-5 pl-5" style="float: right">
+                ${pro["from"]}<span class="mx-2">to</span> 
+                ${pro["to"]}</span>
             </p>
             <p class="justified" style="font-size: 17px">
                 ${pro["desc"]}
