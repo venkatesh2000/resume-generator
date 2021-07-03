@@ -1,4 +1,7 @@
 .card {
   width: 50%;
   margin: 20px auto;
+  font-family: "Lora", "serif";
+  font-size: large;
+  background-color: black;
 }

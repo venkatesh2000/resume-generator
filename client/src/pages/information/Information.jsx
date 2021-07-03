@@ -1,10 +1,11 @@
 import React from "react";
 import "./information.css";
 import HorizontalLinearStepper from "../../components/HorizontalLinearStepper/HorizontalLinearStepper";
+import NavBar2 from "../../components/navBar2/NavBar2";
 
 export default function Information(props) {
   return (
-    <div className="App">
+    <div className="AppInfo">
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
@@ -14,6 +15,7 @@ export default function Information(props) {
         href="https://fonts.googleapis.com/icon?family=Material+Icons"
       />
 
+      <NavBar2 />
       <HorizontalLinearStepper
         step={props.step}
         stepNames={props.stepNames}

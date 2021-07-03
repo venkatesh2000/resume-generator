@@ -1,10 +1,12 @@
 import React from "react";
 import "./home.css";
 import { Link } from "react-router-dom";
+import NavBar from "../../components/navBar/NavBar";
 
 function Home() {
   return (
     <div className="home">
+      <NavBar />
       <div className="imageDiv">
         <img
           className="homeImage"

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 // import TitleBar from "./components/TitleBar/TitleBar.jsx";
@@ -8,7 +8,6 @@ import Education from "./components/Education/Education.jsx";
 import Experiences from "./components/Experiences/Experiences.jsx";
 import Projects from "./components/Projects/Projects.jsx";
 import Preview from "./components/Preview/Preview.jsx";
-import NavBar from "./components/navBar/NavBar";
 import Home from "./pages/homePage/Home";
 import Login from "./pages/login/Login";
 import SignUp from "./pages/signup/SignUp";
@@ -19,10 +18,12 @@ import Information from "./pages/information/Information";
 
 const createAndDownloadPDF = (resume) => {
   axios
-    .post("http://localhost:5000/create-pdf", resume)
+    .post("http://localhost:5000/information/create-pdf", resume)
     .then(() => {
       axios
-        .get("http://localhost:5000/fetch-pdf", { responseType: "arraybuffer" })
+        .get("http://localhost:5000/information/fetch-pdf", {
+          responseType: "arraybuffer",
+        })
         .then((res) => {
           const pdfBlob = new Blob([res.data], { type: "application/pdf" });
           saveAs(pdfBlob, `${resume["name"]} - Resume.pdf`);
@@ -132,20 +133,25 @@ const App = () => {
   ];
   const optionalSteps = [3, 4];
 
+  const [userId, setUserId] = useState("");
+
+  function addUser(id) {
+    setUserId(id);
+  }
+
   return (
     <Router>
-      <NavBar />
       <Switch>
         <Route exact path="/">
           <Home />
         </Route>
         <Route path="/login">
-          <Login />
+          <Login setUser={addUser} />
         </Route>
         <Route path="/signup">
           <SignUp />
         </Route>
-        <Route path="/information">
+        <Route path="/information/:userId">
           <Information
             step={step}
             stepNames={stepNames}
