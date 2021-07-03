@@ -58,6 +58,8 @@ const Projects = (props) => {
   const validateInfo = () => {
     setIsValidated(false);
 
+    const urlRegex =
+      /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
     let currProjects = 0;
     for (let pro in values) {
       let newError = {
@@ -75,10 +77,14 @@ const Projects = (props) => {
         count = 0;
       for (let key in values[pro]) {
         if (values[pro][key].length) {
+          if (key === "link" && !urlRegex.test(values[pro][key])) {
+            newErrorMessage[key] = "Please enter a valid URL!";
+          } else {
+            ++count;
+            newError[key] = false;
+            newErrorMessage[key] = "";
+          }
           flag = true;
-          ++count;
-          newError[key] = false;
-          newErrorMessage[key] = "";
         }
       }
 
