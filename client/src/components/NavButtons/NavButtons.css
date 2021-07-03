@@ -1,0 +1,14 @@
+.buttons {
+  width: 97%;
+  position: fixed;
+  bottom: 0;
+  margin: 10px;
+}
+
+.highlighted-button {
+  float: right;
+}
+
+.normal-button {
+  float: left;
+}
