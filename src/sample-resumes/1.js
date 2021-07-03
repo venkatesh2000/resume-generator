@@ -350,43 +350,7 @@ const resumeTemplate = (resume) => {
                 <span style="padding-right: 10px"
                     ><i class="fas fa-phone-square-alt"></i></span
                 >${pno}
-                </p>
-
-                <p class="rela-block caps side-header">Skills</p>
-
-                <div class="horizontal-list">
-                <p class="list-spacing list-constraint">${s1}</p>
-                <p class="list-spacing list-constraint">${s2}</p>
-                </div>
-                <div class="horizontal-list">
-                <p class="list-spacing list-constraint">${s3}</p>
-                <p class="list-spacing list-constraint">${s4}</p>
-                </div>
-                <div class="horizontal-list">
-                <p class="list-spacing list-constraint">${remainingSkills[0] === undefined || remainingSkills[0] === "" ? "" : remainingSkills[0]}</p>
-                <p class="list-spacing list-constraint">${remainingSkills[1] === undefined || remainingSkills[1] === "" ? "" : remainingSkills[1]}</p>
-                </div>
-                <div class="horizontal-list">
-                <p class="list-spacing list-constraint">${remainingSkills[2] === undefined || remainingSkills[2] === "" ? "" : remainingSkills[2]}</p>
-                <p class="list-spacing list-constraint">${remainingSkills[3] === undefined || remainingSkills[3] === "" ? "" : remainingSkills[3]}</p>
-                </div>
-                <div class="horizontal-list">
-                <p class="list-spacing list-constraint">${remainingSkills[4] === undefined || remainingSkills[4] === "" ? "" : remainingSkills[4]}</p>
-                <p class="list-spacing list-constraint">${remainingSkills[5] === undefined || remainingSkills[5] === "" ? "" : remainingSkills[5]}</p>
-                </div>
-                <!-- 			<p class="rela-block caps side-header">Interests</p>
-                    <p class="rela-block list-spacing">Coding</p>
-                    <p class="rela-block list-spacing">Chess</p> -->
-
-                <!-- 			<p class="rela-block caps side-header">Languages</p>
-                    <div class="horizontal-list">
-                        <p class="list-spacing list-constraint">English</p>
-                        <p class="list-spacing list-constraint">Tamil</p>
-                    </div>
-                    <div class="horizontal-list">
-                        <p class="list-spacing list-constraint">Kannada</p>
-                        <p class="list-spacing list-constraint">Hindi</p>
-                    </div> -->`;
+                </p>`
 
     if (!(github === "" && linkedin === "" && website === "")) {
         html += `<p class="rela-block caps side-header">Links</p>`;
@@ -414,7 +378,43 @@ const resumeTemplate = (resume) => {
         }
     }
 
-    html += `</div><div class="rela-block content-container">
+    html += `
+        <p class="rela-block caps side-header">Skills</p>
+        <div class="horizontal-list">
+        <p class="list-spacing list-constraint">${s1}</p>
+        <p class="list-spacing list-constraint">${s2}</p>
+        </div>
+        <div class="horizontal-list">
+        <p class="list-spacing list-constraint">${s3}</p>
+        <p class="list-spacing list-constraint">${s4}</p>
+        </div>
+        <div class="horizontal-list">
+        <p class="list-spacing list-constraint">${remainingSkills[0] === undefined || remainingSkills[0] === "" ? "" : remainingSkills[0]}</p>
+        <p class="list-spacing list-constraint">${remainingSkills[1] === undefined || remainingSkills[1] === "" ? "" : remainingSkills[1]}</p>
+        </div>
+        <div class="horizontal-list">
+        <p class="list-spacing list-constraint">${remainingSkills[2] === undefined || remainingSkills[2] === "" ? "" : remainingSkills[2]}</p>
+        <p class="list-spacing list-constraint">${remainingSkills[3] === undefined || remainingSkills[3] === "" ? "" : remainingSkills[3]}</p>
+        </div>
+        <div class="horizontal-list">
+        <p class="list-spacing list-constraint">${remainingSkills[4] === undefined || remainingSkills[4] === "" ? "" : remainingSkills[4]}</p>
+        <p class="list-spacing list-constraint">${remainingSkills[5] === undefined || remainingSkills[5] === "" ? "" : remainingSkills[5]}</p>
+        </div>
+        <!-- 			<p class="rela-block caps side-header">Interests</p>
+            <p class="rela-block list-spacing">Coding</p>
+            <p class="rela-block list-spacing">Chess</p> -->
+
+        <!-- 			<p class="rela-block caps side-header">Languages</p>
+            <div class="horizontal-list">
+                <p class="list-spacing list-constraint">English</p>
+                <p class="list-spacing list-constraint">Tamil</p>
+            </div>
+            <div class="horizontal-list">
+                <p class="list-spacing list-constraint">Kannada</p>
+                <p class="list-spacing list-constraint">Hindi</p>
+            </div> -->
+        </div>
+        <div class="rela-block content-container">
         <div class="rela-block caps greyed">Education</div>
         <h3 class="mb-0">${college}</h3>
         <p class="justified mt-0 mb-1" style="font-size: 17px">
