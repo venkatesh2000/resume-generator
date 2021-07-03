@@ -5,7 +5,7 @@ const Preview = (props) => {
 
   return (
     <div>
-      <div dangerouslySetInnerHTML={{ __html: pdf }} />;
+      <div dangerouslySetInnerHTML={{ __html: pdf }} />
       <NavButtons
         resume={resume}
         setResume={setResume}
