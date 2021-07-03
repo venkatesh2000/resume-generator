@@ -3,7 +3,15 @@ import Project from "./Project.jsx";
 import NavButtons from "../NavButtons/NavButtons.jsx";
 
 const Projects = (props) => {
-  const { resume, setResume, step, setStep, numberOfExps } = props;
+  const {
+    resume,
+    setResume,
+    step,
+    setStep,
+    numberOfExps,
+    setPdfUrl,
+    setGetUrl,
+  } = props;
   const value = {
     title: "",
     link: "",
@@ -110,6 +118,8 @@ const Projects = (props) => {
 
     if (!flag && projects >= minProjects) {
       setResume({ ...resume, ...values });
+      setPdfUrl("");
+      setGetUrl(true);
       setStep(step + 1);
     }
   };

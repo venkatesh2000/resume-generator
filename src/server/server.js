@@ -9,7 +9,7 @@ const pdfTemplate = require("../sample-resumes/1.js");
 const options = {
     height: "45cm",
     width: "35cm",
-    timeout: "6000",
+    timeout: "10000",
 };
 
 app.use(cors());

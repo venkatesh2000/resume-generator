@@ -1,9 +1,26 @@
 import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 import "./NavButtons.css";
 
 const NavButtons = (props) => {
-  const { step, setStep, maxSteps, validateInfo, resume, handleDownload } =
-    props;
+  const { step, setStep, maxSteps, validateInfo } = props;
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      width: "100%",
+    },
+    button: {
+      marginRight: theme.spacing(1),
+    },
+    instructions: {
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(1),
+      float: "right",
+      fontSize: 16,
+      fontWeight: "bold",
+    },
+  }));
+  const classes = useStyles();
 
   const handleBack = () => setStep(step - 1);
   const handleReset = () => setStep(0);
@@ -12,16 +29,16 @@ const NavButtons = (props) => {
     <div className="buttons">
       {step === maxSteps - 1 ? (
         <div className="buttons">
-          {/* <Typography className={classes.instructions}>
-              All steps completed - you&apos;re done!!
-            </Typography> */}
           <Button onClick={handleReset} className="normal-button">
             Reset
           </Button>
           <Button onClick={handleBack} className="normal-button">
             Back
           </Button>
-          <Button
+          <Typography className={classes.instructions}>
+            You&apos;re Done!!
+          </Typography>
+          {/* <Button
             variant="contained"
             color="primary"
             onClick={() => {
@@ -30,7 +47,7 @@ const NavButtons = (props) => {
             className="highlighted-button"
           >
             Download
-          </Button>
+          </Button> */}
         </div>
       ) : (
         <div className="buttons">
