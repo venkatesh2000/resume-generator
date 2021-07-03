@@ -1,5 +1,6 @@
 const resumeTemplate = (resume) => {
-    const name = resume["name"],
+    const logo = "HI",
+        name = resume["name"],
         email = resume["email"],
         pno = resume["pno"],
         github = resume["github"],
@@ -337,7 +338,7 @@ const resumeTemplate = (resume) => {
                         fill="none"
                     />
                     </svg>
-                    <p class="logo-text">VS</p>
+                    <p class="logo-text">${logo}</p>
                 </div>
                 </div>
                 <p class="mb-1">
@@ -391,24 +392,24 @@ const resumeTemplate = (resume) => {
         html += `<p class="rela-block caps side-header">Links</p>`;
 
         if (website !== "") {
-            html += `<p class="rela-block social mb-0">
+            html += `<a class="rela-block social mb-0">
                 <span style="padding-right: 15px; font-size: 20px"
                     ><i class="fas fa-globe"></i></span
-                >${website}
-                </p>`
+                ><span><a href="${website}">${website}</a></span>
+                </a>`
         }
         if (linkedin !== "") {
-            html += `<p class="rela-block social mb-4">
+            html += `<a class="rela-block social mb-4">
                 <span style="padding-right: 15px; font-size: 20px"
                     ><i class="fab fa-linkedin"></i></span
-                >${linkedin}
-                </p>`
+                ><span><a href="${linkedin}">${linkedin}</a></span>
+                </a>`
         }
         if (github !== "") {
             html += `<p class="rela-block social mb-0">
                 <span style="padding-right: 15px; font-size: 20px"
                     ><i class="fab fa-github"></i></span
-                >${github}
+                ><span><a href="${github}">${github}</a></span>
                 </p>`
         }
     }
@@ -448,7 +449,7 @@ const resumeTemplate = (resume) => {
             <h3>${pro["title"]}</h3>
             <p class="light mt-1 mb-2" style="font-size: 17px">
                 <span class="mr-2"><i class="fas fa-link"></i></span
-                >${pro["link"]}
+                ><span><a href="${pro["link"]}">${pro["link"]}</a></span>
             </p>
             <p class="justified" style="font-size: 17px">
                 ${pro["desc"]}
