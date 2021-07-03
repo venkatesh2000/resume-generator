@@ -1,16 +1,17 @@
 import NavButtons from "../NavButtons/NavButtons.jsx";
 
 const Preview = (props) => {
-  const { step, setStep, maxSteps, pdf, resume } = props;
+  const { resume, setResume, step, setStep, maxSteps, pdf } = props;
 
   return (
     <div>
       <div dangerouslySetInnerHTML={{ __html: pdf }} />;
       <NavButtons
+        resume={resume}
+        setResume={setResume}
         step={step}
         setStep={setStep}
         maxSteps={maxSteps}
-        resume={resume}
       />
     </div>
   );

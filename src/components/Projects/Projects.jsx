@@ -8,6 +8,8 @@ const Projects = (props) => {
     setResume,
     step,
     setStep,
+    oldNumberOfExps,
+    setOldNumberOfExps,
     numberOfExps,
     setPdfUrl,
     setGetUrl,
@@ -120,6 +122,7 @@ const Projects = (props) => {
       setResume({ ...resume, ...values });
       setPdfUrl("");
       setGetUrl(true);
+      setOldNumberOfExps(numberOfExps);
       setStep(step + 1);
     }
   };
@@ -177,10 +180,20 @@ const Projects = (props) => {
     setErrors({ ...newErrors });
     setErrorMessages({ ...newErrorMessages });
   };
+  const init = () => {
+    const newValues = {};
+    for (let i = 1; i <= 4; ++i) {
+      if (`p${i}` in resume) newValues[`p${i}`] = resume[`p${i}`];
+    }
+
+    if (Object.keys(newValues).length) setValues({ ...newValues });
+  };
   React.useEffect(() => {
     if (numberOfExps === 1) InitWhenExpIsOne();
     else if (numberOfExps === 2) InitWhenExpIsTwo();
     else if (numberOfExps === 3) InitWhenExpIsThree();
+
+    if (oldNumberOfExps === numberOfExps) init();
   }, []);
 
   if (numberOfExps === 0) {

@@ -3,7 +3,15 @@ import Experience from "./Experience.jsx";
 import NavButtons from "../NavButtons/NavButtons.jsx";
 
 const Experiences = (props) => {
-  const { resume, setResume, step, setStep, setNumberOfExps } = props;
+  const {
+    resume,
+    setResume,
+    step,
+    setStep,
+    setOldNumberOfExps,
+    numberOfExps,
+    setNumberOfExps,
+  } = props;
   const value = {
     company: "",
     role: "",
@@ -117,6 +125,7 @@ const Experiences = (props) => {
     }
 
     if (!flag) {
+      setOldNumberOfExps(numberOfExps);
       setNumberOfExps(exps);
       setResume({ ...resume, ...values });
       setStep(step + 1);
@@ -125,6 +134,17 @@ const Experiences = (props) => {
   React.useEffect(() => {
     if (isValidated) handleNext();
   });
+  const init = () => {
+    const newValues = {};
+    for (let i = 1; i <= 4; ++i) {
+      if (`e${i}` in resume) newValues[`e${i}`] = resume[`e${i}`];
+    }
+
+    if (Object.keys(newValues).length) setValues({ ...newValues });
+  };
+  React.useEffect(() => {
+    init();
+  }, []);
 
   return (
     <div>

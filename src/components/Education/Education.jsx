@@ -18,24 +18,24 @@ const Education = (props) => {
   const { resume, setResume, step, setStep } = props;
   const [values, setValues] = React.useState({
     college: "",
-    from: "",
-    to: "",
     degree: "",
     cgpa: "",
+    from: "",
+    to: "",
   });
   const [errors, setErrors] = React.useState({
     college: false,
-    from: false,
-    to: false,
     degree: false,
     cgpa: false,
+    from: false,
+    to: false,
   });
   const [errorMessages, setErrorMessages] = React.useState({
     college: "",
-    from: "",
-    to: "",
     degree: "",
     cgpa: "",
+    from: "",
+    to: "",
   });
   const [isValidated, setIsValidated] = React.useState(false);
 
@@ -67,6 +67,18 @@ const Education = (props) => {
       newErrors["college"] = true;
       newErrorMessages["college"] = "This is a required field!";
     }
+    if (!values.degree.length) {
+      newErrors["degree"] = true;
+      newErrorMessages["degree"] = "This is a required field!";
+    }
+    if (!values.cgpa.length) {
+      newErrors["cgpa"] = true;
+      newErrorMessages["cgpa"] = "This is a required field!";
+    }
+    if (isNaN(values.cgpa)) {
+      newErrors["cgpa"] = true;
+      newErrorMessages["cgpa"] = "Please enter a valid number!";
+    }
     if (!values.from.length) {
       newErrors["from"] = true;
       newErrorMessages["from"] = "This is a required field!";
@@ -83,18 +95,6 @@ const Education = (props) => {
       newErrors["to"] = true;
       newErrorMessages["to"] = "Please enter a valid number!";
     }
-    if (!values.degree.length) {
-      newErrors["degree"] = true;
-      newErrorMessages["degree"] = "This is a required field!";
-    }
-    if (!values.cgpa.length) {
-      newErrors["cgpa"] = true;
-      newErrorMessages["cgpa"] = "This is a required field!";
-    }
-    if (isNaN(values.cgpa)) {
-      newErrors["cgpa"] = true;
-      newErrorMessages["cgpa"] = "Please enter a valid number!";
-    }
 
     setErrors({ ...newErrors });
     setErrorMessages({ ...newErrorMessages });
@@ -109,6 +109,21 @@ const Education = (props) => {
   React.useEffect(() => {
     if (isValidated) handleNext();
   });
+  const init = () => {
+    if ("college" in resume) {
+      const newValues = {};
+      newValues["college"] = resume["college"];
+      newValues["degree"] = resume["degree"];
+      newValues["cgpa"] = resume["cgpa"];
+      newValues["from"] = resume["from"];
+      newValues["to"] = resume["to"];
+
+      setValues({ ...newValues });
+    }
+  };
+  React.useEffect(() => {
+    init();
+  }, []);
 
   return (
     <div>
@@ -122,24 +137,6 @@ const Education = (props) => {
               onChange={(event) => onValueChange("college", event)}
               error={errors.college}
               helperText={errors.college && errorMessages.college}
-              required
-            />
-            <TextField
-              label="Joining Year"
-              variant="outlined"
-              value={values.from}
-              onChange={(event) => onValueChange("from", event)}
-              error={errors.from}
-              helperText={errors.from && errorMessages.from}
-              required
-            />
-            <TextField
-              label="Year of Graduation"
-              variant="outlined"
-              value={values.to}
-              onChange={(event) => onValueChange("to", event)}
-              error={errors.to}
-              helperText={errors.to && errorMessages.to}
               required
             />
             <TextField
@@ -158,6 +155,24 @@ const Education = (props) => {
               onChange={(event) => onValueChange("cgpa", event)}
               error={errors.cgpa}
               helperText={errors.cgpa && errorMessages.cgpa}
+              required
+            />
+            <TextField
+              label="Joining Year"
+              variant="outlined"
+              value={values.from}
+              onChange={(event) => onValueChange("from", event)}
+              error={errors.from}
+              helperText={errors.from && errorMessages.from}
+              required
+            />
+            <TextField
+              label="Year of Graduation"
+              variant="outlined"
+              value={values.to}
+              onChange={(event) => onValueChange("to", event)}
+              error={errors.to}
+              helperText={errors.to && errorMessages.to}
               required
             />
           </form>

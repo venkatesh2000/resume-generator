@@ -27,7 +27,7 @@ const Experience = (props) => {
         <CardContent>
           <form className={classes.root} autoComplete="on">
             <TextField
-              label="Job"
+              label="Company"
               variant="outlined"
               value={values.company}
               onChange={(event) => onValueChange("company", event)}

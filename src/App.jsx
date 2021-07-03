@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import HorizontalLinearStepper from "./components/HorizontalLinearStepper/HorizontalLinearStepper";
-// import TitleBar from "./components/TitleBar/TitleBar.jsx";
 import PersonalInfo from "./components/PersonalInfo/PersonalInfo.jsx";
 import Skills from "./components/Skills/Skills.jsx";
 import Education from "./components/Education/Education.jsx";
@@ -13,9 +12,7 @@ import NavBar from "./components/navBar/NavBar";
 import Home from "./pages/homePage/Home";
 import Login from "./pages/login/Login";
 import SignUp from "./pages/signup/SignUp";
-// import resumeTemplate from "./sample-resumes/1.js";
 import axios from "axios";
-import { saveAs } from "file-saver";
 
 // const createAndDownloadPDF = (resume) => {
 //   axios
@@ -58,6 +55,8 @@ const getForm = (
   setResume,
   step,
   setStep,
+  oldNumberOfExps,
+  setOldNumberOfExps,
   numberOfExps,
   setNumberOfExps,
   maxSteps,
@@ -104,6 +103,8 @@ const getForm = (
           setResume={setResume}
           step={step}
           setStep={setStep}
+          setOldNumberOfExps={setOldNumberOfExps}
+          numberOfExps={numberOfExps}
           setNumberOfExps={setNumberOfExps}
           maxSteps={maxSteps}
         />
@@ -115,6 +116,8 @@ const getForm = (
           setResume={setResume}
           step={step}
           setStep={setStep}
+          oldNumberOfExps={oldNumberOfExps}
+          setOldNumberOfExps={setOldNumberOfExps}
           numberOfExps={numberOfExps}
           maxSteps={maxSteps}
           setPdfUrl={setPdfUrl}
@@ -124,7 +127,6 @@ const getForm = (
     // case 5:
     //   return <Languages step={step} setStep={setStep} maxSteps={maxSteps} />;
     default: {
-      // const html = resumeTemplate(resume);
       if (getUrl) {
         let url = getPdfViewerHelper(resume);
         url.then((res) => {
@@ -136,11 +138,12 @@ const getForm = (
       console.log(pdfViewer);
       return (
         <Preview
+          resume={resume}
+          setResume={setResume}
           step={step}
           setStep={setStep}
           maxSteps={maxSteps}
           pdf={pdfViewer}
-          resume={resume}
         />
       );
     }
@@ -150,6 +153,7 @@ const getForm = (
 const App = () => {
   const [resume, setResume] = React.useState({});
   const [step, setStep] = React.useState(0);
+  const [oldNumberOfExps, setOldNumberOfExps] = React.useState(0);
   const [numberOfExps, setNumberOfExps] = React.useState(0);
   const [pdfUrl, setPdfUrl] = React.useState("");
   const [getUrl, setGetUrl] = React.useState("");
@@ -162,7 +166,7 @@ const App = () => {
     // "Languages",
     "Preview",
   ];
-  const optionalSteps = [3, 4];
+  const optionalSteps = [3];
 
   return (
     <Router>
@@ -198,6 +202,8 @@ const App = () => {
               setResume,
               step,
               setStep,
+              oldNumberOfExps,
+              setOldNumberOfExps,
               numberOfExps,
               setNumberOfExps,
               stepNames.length,

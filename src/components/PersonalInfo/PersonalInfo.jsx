@@ -106,13 +106,29 @@ const PersonalInfo = (props) => {
   };
   const handleNext = () => {
     if (!Object.values(errors).includes(true)) {
-      setResume({ ...resume, ...values })
+      setResume({ ...resume, ...values });
       setStep(step + 1);
     }
   };
   React.useEffect(() => {
     if (isValidated) handleNext();
   }, [isValidated, handleNext]);
+  const init = () => {
+    if ("name" in resume) {
+      const newValues = {};
+      newValues["name"] = resume["name"];
+      newValues["email"] = resume["email"];
+      newValues["pno"] = resume["pno"];
+      newValues["github"] = resume["github"];
+      newValues["linkedin"] = resume["linkedin"];
+      newValues["website"] = resume["website"];
+
+      setValues({ ...newValues });
+    }
+  };
+  React.useEffect(() => {
+    init();
+  }, []);
 
   return (
     <div>

@@ -91,6 +91,19 @@ const Skills = (props) => {
   React.useEffect(() => {
     if (isValidated) handleNext();
   });
+  const init = () => {
+    if ("s1" in resume) {
+      const newValues = {};
+      for (let i = 1; i <= 10; ++i) {
+        newValues[`s${i}`] = resume[`s${i}`];
+      }
+
+      setValues({ ...newValues });
+    }
+  };
+  React.useEffect(() => {
+    init();
+  }, []);
 
   return (
     <div>

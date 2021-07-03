@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import "./NavButtons.css";
 
 const NavButtons = (props) => {
-  const { step, setStep, maxSteps, validateInfo } = props;
+  const { setResume, step, setStep, maxSteps, validateInfo } = props;
   const useStyles = makeStyles((theme) => ({
     root: {
       width: "100%",
@@ -23,7 +23,10 @@ const NavButtons = (props) => {
   const classes = useStyles();
 
   const handleBack = () => setStep(step - 1);
-  const handleReset = () => setStep(0);
+  const handleReset = () => {
+    setResume({});
+    setStep(0);
+  };
 
   return (
     <div className="buttons">
@@ -51,7 +54,11 @@ const NavButtons = (props) => {
         </div>
       ) : (
         <div className="buttons">
-          <Button onClick={handleReset} className="normal-button">
+          <Button
+            disabled={step === 0}
+            onClick={handleReset}
+            className="normal-button"
+          >
             Reset
           </Button>
           <Button
