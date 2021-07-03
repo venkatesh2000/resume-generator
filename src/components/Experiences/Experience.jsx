@@ -3,13 +3,14 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+import "./Experiences.css";
 
 const Experience = (props) => {
   const useStyles = makeStyles((theme) => ({
     root: {
       "& > *": {
-        marginTop: theme.spacing(2),
-        width: "75ch",
+        marginTop: theme.spacing(3),
+        width: "85%",
       },
     },
   }));
@@ -23,7 +24,7 @@ const Experience = (props) => {
 
   return (
     <div>
-      <Card className="card">
+      <Card className="card" variant="outlined">
         <CardContent>
           <form className={classes.root} autoComplete="on">
             <TextField

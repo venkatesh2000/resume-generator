@@ -10,8 +10,8 @@ const PersonalInfo = (props) => {
   const useStyles = makeStyles((theme) => ({
     root: {
       "& > *": {
-        marginTop: theme.spacing(2),
-        width: "75ch",
+        marginTop: theme.spacing(3),
+        width: "85%",
       },
     },
   }));
@@ -132,7 +132,7 @@ const PersonalInfo = (props) => {
 
   return (
     <div>
-      <Card className="card">
+      <Card className="card" variant="outlined">
         <CardContent>
           <form className={classes.root} autoComplete="on">
             <TextField
@@ -166,7 +166,7 @@ const PersonalInfo = (props) => {
         </CardContent>
       </Card>
 
-      <Card className="card">
+      <Card className="card" variant="outlined">
         <CardContent>
           <form className={classes.root} autoComplete="on">
             <TextField
