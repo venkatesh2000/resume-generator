@@ -28,6 +28,7 @@ mongoose
   .then(console.log("Connected to mongoDB atlas"))
   .catch((err) => console.log(err));
 
+// Route for register and login user
 app.use("/auth", authRoute);
 
 // POST route for PDF generation....
