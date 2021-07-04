@@ -33,14 +33,16 @@ mongoose
 app.use("/auth", authRoute);
 
 //Route to store user details
-app.post("/information/postDetails", async (req, res) => {
-  try {
-    const newDetails = new UserInformationSchema(req.body);
-    const details = newDetails.save();
-    res.status(200).json(details);
-  } catch (err) {
-    res.status(500).json(err);
-  }
+app.post("/information/postDetails", (req, res) => {
+  const newDetails = new UserInformationSchema(req.body);
+  const details = newDetails.save();
+  details
+    .then(() => {
+      res.status(200).send(Promise.resolve())
+    })
+    .catch(() => {
+      res.status(500).send(Promise.reject())
+    })
 });
 
 //Route to get user details
@@ -57,23 +59,23 @@ app.post("/information/getDetails", async (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("HOLA AMIGOS!!");
+  res.send("Hi!!");
 });
 
 // POST route for PDF generation....
 app.post("/information/create-pdf", (req, res) => {
   pdf.create(pdfTemplate(req.body), options).toFile("Resume.pdf", (err) => {
-    if (err) {
-      console.log(err);
-      res.send(Promise.reject());
-    } else res.send(Promise.resolve());
+    if (err)
+      res.status(500).send(Promise.reject())
+    else
+      res.status(200).send(Promise.resolve())
   });
 });
 
 // GET route -> send generated PDF to client...
 app.get("/information/fetch-pdf", (req, res) => {
   const file = `${__dirname}/Resume.pdf`;
-  res.download(file);
+  res.download(file)
 });
 
 app.listen("5000", () => {

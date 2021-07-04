@@ -14,67 +14,51 @@ import Signup from "./pages/Signup/Signup.jsx";
 import Information from "./pages/Information/Information.jsx";
 import axios from "axios";
 
-// const createAndDownloadPDF = (resume) => {
-//   axios
-//     .post("http://localhost:5000/create-pdf", resume)
-//     .then(() => {
-//       axios
-//         .get("http://localhost:5000/fetch-pdf", { responseType: "arraybuffer" })
-//         .then((res) => {
-//           const pdfBlob = new Blob([res.data], { type: "application/pdf" });
-//           saveAs(pdfBlob, `${resume["name"]} - Resume.pdf`);
-//         })
-//         .catch((err) => {
-//           console.log(err);
-//         });
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// };
-
-const getPdfViewer = async (resume) => {
-  await axios.post("http://localhost:5000/information/create-pdf", resume);
-  const res = await axios.get("http://localhost:5000/information/fetch-pdf", {
-    responseType: "arraybuffer",
-  });
-  const pdfBlob = new Blob([res.data], { type: "application/pdf" });
-  const url = URL.createObjectURL(pdfBlob);
-
-  return url;
+const getPdfViewer = (resume, setPdfUrl) => {
+  axios
+    .post("http://localhost:5000/information/create-pdf", resume)
+    .then(() => {
+      axios
+        .get("http://localhost:5000/information/fetch-pdf", {
+          responseType: "arraybuffer",
+        })
+        .then((res) => {
+          const pdfBlob = new Blob([res.data], { type: "application/pdf" });
+          const url = URL.createObjectURL(pdfBlob);
+          setPdfUrl(url);
+        })
+        .catch(() => {
+          alert("Sorry, Unable to display PDF!!");
+        });
+    })
+    .catch(() => {
+      alert("Sorry, Unable to generate PDF!!");
+    });
 };
 
-const getPdfViewerHelper = async (resume) => {
-  const url = await getPdfViewer(resume);
-
-  return url;
-};
-
-const storeDetails = async (resume) => {
+const storeDetails = (resume) => {
   let pathName = window.location.pathname;
   pathName = pathName.split("/")[2];
   resume["userId"] = pathName;
 
-  const res = await axios.post(
-    "http://localhost:5000/information/postDetails",
-    resume
-  );
-  if (res.status === 200) {
-    alert("Details saved successfully");
-  }
+  axios
+    .post("http://localhost:5000/information/postDetails", resume)
+    .then(() => {
+      alert("Details saved successfully in the database!!");
+    })
+    .catch(() => {
+      alert("Sorry, Unable to store your Resume data in the database!!");
+    });
 };
 
-const getDetails = async () => {
+const getDetails = () => {
   let pathName = window.location.pathname;
   pathName = pathName.split("/")[2];
-  const res = await axios.post("http://localhost:5000/information/getDetails", {
+  const res = axios.post("http://localhost:5000/information/getDetails", {
     pathName,
   });
-  // if (res.status === 200) {
-  //   return res;
-  // }
+
   return res;
-  // console.log(res);
 };
 
 const getForm = (
@@ -88,11 +72,7 @@ const getForm = (
   setNumberOfExps,
   maxSteps,
   pdfUrl,
-  setPdfUrl,
-  getUrl,
-  setGetUrl,
-  send,
-  setSend
+  setPdfUrl
 ) => {
   switch (step) {
     case 0:
@@ -150,26 +130,12 @@ const getForm = (
           numberOfExps={numberOfExps}
           maxSteps={maxSteps}
           setPdfUrl={setPdfUrl}
-          setGetUrl={setGetUrl}
-          setSend={setSend}
         />
       );
-    // case 5:
-    //   return <Languages step={step} setStep={setStep} maxSteps={maxSteps} />;
+
     default: {
-      if (getUrl) {
-        let url = getPdfViewerHelper(resume);
-        url.then((res) => {
-          setPdfUrl(res);
-          setGetUrl(false);
-        });
-      }
       const pdfViewer = `<iframe src="${pdfUrl}" type="application/pdf" width=1200px height=1200px></iframe>`;
-      console.log(pdfViewer);
-      if (send) {
-        storeDetails(resume);
-        setSend(false);
-      }
+
       return (
         <Preview
           resume={resume}
@@ -190,15 +156,12 @@ const App = () => {
   const [oldNumberOfExps, setOldNumberOfExps] = React.useState(0);
   const [numberOfExps, setNumberOfExps] = React.useState(0);
   const [pdfUrl, setPdfUrl] = React.useState("");
-  const [getUrl, setGetUrl] = React.useState("");
-  const [send, setSend] = React.useState("");
   const stepNames = [
     "Personal Info",
     "Education",
     "Skills",
     "Experiences",
     "Projects",
-    // "Languages",
     "Preview",
   ];
   const optionalSteps = [3];
@@ -211,6 +174,12 @@ const App = () => {
       }
     });
   }, []);
+  React.useEffect(() => {
+    if (step === 5) {
+      getPdfViewer(resume, setPdfUrl);
+      storeDetails(resume);
+    }
+  }, [step]);
 
   return (
     <Router>
@@ -242,11 +211,7 @@ const App = () => {
             maxSteps={stepNames.length}
             pdfUrl={pdfUrl}
             setPdfUrl={setPdfUrl}
-            getUrl={getUrl}
-            setGetUrl={setGetUrl}
             getForm={getForm}
-            send={send}
-            setSend={setSend}
           />
         </Route>
       </Switch>

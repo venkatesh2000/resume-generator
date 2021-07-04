@@ -32,11 +32,7 @@ export default function Information(props) {
         props.setNumberOfExps,
         props.stepNames.length,
         props.pdfUrl,
-        props.setPdfUrl,
-        props.getUrl,
-        props.setGetUrl,
-        props.send,
-        props.setSend
+        props.setPdfUrl
       )}
     </div>
   );
