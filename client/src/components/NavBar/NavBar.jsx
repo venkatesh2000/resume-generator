@@ -12,7 +12,11 @@ function NavBar() {
       <div className="topCenter">
         <ul className="topList">
           <li className="topListItem">
-            <Link className="link" to="/">
+            <Link
+              className="link"
+              to="/"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
               Home
             </Link>
           </li>
@@ -23,16 +27,24 @@ function NavBar() {
       </div>
       <div className="topRight">
         <ul className="topList">
-          <button type="button" class="btn btn-secondary topListItem">
-            <Link className="link" to="/login">
+          <Link
+            className="link"
+            to="/login"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <button type="button" class="btn btn-secondary topListItem">
               Login
-            </Link>
-          </button>
-          <button type="button" class="btn btn-primary topListItem">
-            <Link className="link" to="/signup">
+            </button>
+          </Link>
+          <Link
+            className="link"
+            to="/signup"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <button type="button" class="btn btn-primary topListItem">
               Signup
-            </Link>
-          </button>
+            </button>
+          </Link>
         </ul>
       </div>
     </div>

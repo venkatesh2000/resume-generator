@@ -13,6 +13,7 @@ const Projects = (props) => {
     numberOfExps,
     setPdfUrl,
     setGetUrl,
+    setSend,
   } = props;
   const value = {
     title: "",
@@ -64,8 +65,7 @@ const Projects = (props) => {
   const validateInfo = () => {
     setIsValidated(false);
 
-    const urlRegex =
-      /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
+    const urlRegex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
     let currProjects = 0;
     for (let pro in values) {
       let newError = {
@@ -142,6 +142,7 @@ const Projects = (props) => {
       setResume({ ...resume, ...values });
       setPdfUrl("");
       setGetUrl(true);
+      setSend(true);
       setOldNumberOfExps(numberOfExps);
       setStep(step + 1);
     }

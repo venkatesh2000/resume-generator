@@ -5,6 +5,7 @@ const cors = require("cors");
 const pdf = require("html-pdf");
 
 const authRoute = require("../server/routes/auth.js");
+const UserInformationSchema = require("../server/models/InformationSchema.js");
 const pdfTemplate = require("../client/src/sample-resumes/1.js");
 
 const options = {
@@ -31,9 +32,33 @@ mongoose
 // Route for register and login user
 app.use("/auth", authRoute);
 
+//Route to store user details
+app.post("/information/postDetails", async (req, res) => {
+  try {
+    const newDetails = new UserInformationSchema(req.body);
+    const details = newDetails.save();
+    res.status(200).json(details);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//Route to get user details
+app.post("/information/getDetails", async (req, res) => {
+  try {
+    const userDetails = await UserInformationSchema.findOne({
+      userId: req.body.pathName,
+    });
+    // !userDetails && res.status(400).json("Wrong credentials!");
+    res.status(200).json(userDetails);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 app.get("/", (req, res) => {
-  res.send("HOLA AMIGOS!!")
-})
+  res.send("HOLA AMIGOS!!");
+});
 
 // POST route for PDF generation....
 app.post("/information/create-pdf", (req, res) => {

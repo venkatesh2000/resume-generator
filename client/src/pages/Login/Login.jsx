@@ -39,7 +39,7 @@ export default function Login(props) {
   useEffect(() => {
     url = `/information/${userId}`;
     // console.log(url);
-    if (userId != "") {
+    if (userId !== "") {
       window.location.replace(url);
     }
 

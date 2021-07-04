@@ -50,6 +50,33 @@ const getPdfViewerHelper = async (resume) => {
   return url;
 };
 
+const storeDetails = async (resume) => {
+  let pathName = window.location.pathname;
+  pathName = pathName.split("/")[2];
+  resume["userId"] = pathName;
+
+  const res = await axios.post(
+    "http://localhost:5000/information/postDetails",
+    resume
+  );
+  if (res.status === 200) {
+    alert("Details saved successfully");
+  }
+};
+
+const getDetails = async () => {
+  let pathName = window.location.pathname;
+  pathName = pathName.split("/")[2];
+  const res = await axios.post("http://localhost:5000/information/getDetails", {
+    pathName,
+  });
+  // if (res.status === 200) {
+  //   return res;
+  // }
+  return res;
+  // console.log(res);
+};
+
 const getForm = (
   resume,
   setResume,
@@ -63,7 +90,9 @@ const getForm = (
   pdfUrl,
   setPdfUrl,
   getUrl,
-  setGetUrl
+  setGetUrl,
+  send,
+  setSend
 ) => {
   switch (step) {
     case 0:
@@ -122,6 +151,7 @@ const getForm = (
           maxSteps={maxSteps}
           setPdfUrl={setPdfUrl}
           setGetUrl={setGetUrl}
+          setSend={setSend}
         />
       );
     // case 5:
@@ -136,6 +166,10 @@ const getForm = (
       }
       const pdfViewer = `<iframe src="${pdfUrl}" type="application/pdf" width=1200px height=1200px></iframe>`;
       console.log(pdfViewer);
+      if (send) {
+        storeDetails(resume);
+        setSend(false);
+      }
       return (
         <Preview
           resume={resume}
@@ -157,6 +191,7 @@ const App = () => {
   const [numberOfExps, setNumberOfExps] = React.useState(0);
   const [pdfUrl, setPdfUrl] = React.useState("");
   const [getUrl, setGetUrl] = React.useState("");
+  const [send, setSend] = React.useState("");
   const stepNames = [
     "Personal Info",
     "Education",
@@ -167,6 +202,15 @@ const App = () => {
     "Preview",
   ];
   const optionalSteps = [3];
+  React.useEffect(() => {
+    const res = getDetails();
+    res.then((res) => {
+      if (res.status === 200) {
+        setResume({ ...res.data });
+        // console.log(res.data);
+      }
+    });
+  }, []);
 
   return (
     <Router>
@@ -201,6 +245,8 @@ const App = () => {
             getUrl={getUrl}
             setGetUrl={setGetUrl}
             getForm={getForm}
+            send={send}
+            setSend={setSend}
           />
         </Route>
       </Switch>

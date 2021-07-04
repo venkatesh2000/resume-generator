@@ -34,7 +34,9 @@ export default function Information(props) {
         props.pdfUrl,
         props.setPdfUrl,
         props.getUrl,
-        props.setGetUrl
+        props.setGetUrl,
+        props.send,
+        props.setSend
       )}
     </div>
   );
