@@ -19,17 +19,10 @@ export default function Login(props) {
         email,
         password,
       });
-      // console.log(res.data._id);
 
       if (res.data) {
         setUserID(res.data._id);
       }
-      // url = await `/information/${userId}`;
-      // // url = "/information/".concat("", userId);
-      // await console.log(url);
-      // changePage(url);
-
-      // await window.location.replace(url);
     } catch (err) {
       setError(true);
       console.log(err);
@@ -38,22 +31,10 @@ export default function Login(props) {
 
   useEffect(() => {
     url = `/information/${userId}`;
-    // console.log(url);
     if (userId !== "") {
       window.location.replace(url);
     }
-
-    // window.location.replace(url);
   }, [userId]);
-
-  // async function changePage(url) {
-  //   await window.location.replace(url);
-  // }
-
-  // function handleClick(e) {
-  //   e.preventDefault();
-  //   props.setUser(userId);
-  // }
 
   return (
     <div className="login">

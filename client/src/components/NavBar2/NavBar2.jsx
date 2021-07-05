@@ -1,6 +1,23 @@
 import React from "react";
 import "./NavBar2.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
+const handleClick = () => {
+  let pathName = window.location.pathname;
+  pathName = pathName.split("/")[2];
+  axios
+    .post("http://localhost:5000/information/deleteAccount", {
+      pathName,
+    })
+    .then((res) => {
+      if (res.status === 200) {
+        // window.location.replace("/");
+        console.log("deleted");
+      }
+    });
+  window.location.replace("/");
+};
 
 function NavBar2() {
   return (
@@ -29,13 +46,21 @@ function NavBar2() {
         <ul className="topList">
           <Link
             className="link"
-            to="/signup"
+            to="/"
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            <button type="button" className="btn btn-danger topListItem">
+            <button type="button" className="btn btn-info topListItem">
               LOGOUT
             </button>
           </Link>
+          <button
+            type="button"
+            className="btn btn-danger topListItem"
+            style={{ textDecoration: "none", color: "white" }}
+            onClick={handleClick}
+          >
+            Delete Account
+          </button>
         </ul>
       </div>
     </div>

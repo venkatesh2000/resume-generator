@@ -5,6 +5,7 @@ const cors = require("cors");
 const pdf = require("html-pdf");
 
 const authRoute = require("../server/routes/auth.js");
+const User = require("../server/models/User.js");
 const UserInformationSchema = require("../server/models/InformationSchema.js");
 const pdfTemplate = require("../client/src/sample-resumes/1.js");
 
@@ -34,26 +35,26 @@ app.use("/auth", authRoute);
 
 //Route to store user details
 app.post("/information/postDetails", (req, res) => {
-  UserInformationSchema.updateOne({ userId: req.body.userId },
+  UserInformationSchema.updateOne(
+    { userId: req.body.userId },
     { ...req.body },
     { upsert: true },
     (err, _) => {
-      if (err)
-        res.status(500).send()
-      else
-        res.status(200).send()
-    })
+      if (err) res.status(500).send();
+      else res.status(200).send();
+    }
+  );
 });
 
 //Route to get user details
 app.post("/information/getDetails", (req, res) => {
-  UserInformationSchema.findOne({ userId: req.body.pathName },
-    function (err, userDetails) {
-      if (err)
-        res.status(500).json(err)
-      else
-        res.status(200).json(userDetails)
-    });
+  UserInformationSchema.findOne({ userId: req.body.pathName }, function (
+    err,
+    userDetails
+  ) {
+    if (err) res.status(500).json(err);
+    else res.status(200).json(userDetails);
+  });
 });
 
 app.get("/", (req, res) => {
@@ -63,17 +64,34 @@ app.get("/", (req, res) => {
 // POST route for PDF generation....
 app.post("/information/createPdf", (req, res) => {
   pdf.create(pdfTemplate(req.body), options).toFile("Resume.pdf", (err) => {
-    if (err)
-      res.send(Promise.reject())
-    else
-      res.send(Promise.resolve())
+    if (err) res.send(Promise.reject());
+    else res.send(Promise.resolve());
   });
 });
 
 // GET route -> send generated PDF to client...
 app.get("/information/fetchPdf", (req, res) => {
   const file = `${__dirname}/Resume.pdf`;
-  res.download(file)
+  res.download(file);
+});
+
+//Route to delete user account
+app.post("/information/deleteAccount", (req, res) => {
+  User.findByIdAndDelete(req.body.pathName, (err) => {
+    if (err) {
+      // console.log(err);
+      res.status(500).json(err);
+    }
+  });
+  UserInformationSchema.findOneAndDelete(
+    { userId: req.body.pathName },
+    (err) => {
+      if (err) {
+        res.status(500).json(err);
+      }
+    }
+  );
+  res.status(200);
 });
 
 app.listen("5000", () => {
