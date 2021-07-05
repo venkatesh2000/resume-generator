@@ -34,28 +34,26 @@ app.use("/auth", authRoute);
 
 //Route to store user details
 app.post("/information/postDetails", (req, res) => {
-  const newDetails = new UserInformationSchema(req.body);
-  const details = newDetails.save();
-  details
-    .then(() => {
-      res.status(200).send(Promise.resolve())
-    })
-    .catch(() => {
-      res.status(500).send(Promise.reject())
+  UserInformationSchema.updateOne({ userId: req.body.userId },
+    { ...req.body },
+    { upsert: true },
+    (err, _) => {
+      if (err)
+        res.status(500).send()
+      else
+        res.status(200).send()
     })
 });
 
 //Route to get user details
-app.post("/information/getDetails", async (req, res) => {
-  try {
-    const userDetails = await UserInformationSchema.findOne({
-      userId: req.body.pathName,
+app.post("/information/getDetails", (req, res) => {
+  UserInformationSchema.findOne({ userId: req.body.pathName },
+    function (err, userDetails) {
+      if (err)
+        res.status(500).json(err)
+      else
+        res.status(200).json(userDetails)
     });
-    // !userDetails && res.status(400).json("Wrong credentials!");
-    res.status(200).json(userDetails);
-  } catch (err) {
-    res.status(500).json(err);
-  }
 });
 
 app.get("/", (req, res) => {
@@ -63,17 +61,17 @@ app.get("/", (req, res) => {
 });
 
 // POST route for PDF generation....
-app.post("/information/create-pdf", (req, res) => {
+app.post("/information/createPdf", (req, res) => {
   pdf.create(pdfTemplate(req.body), options).toFile("Resume.pdf", (err) => {
     if (err)
-      res.status(500).send(Promise.reject())
+      res.send(Promise.reject())
     else
-      res.status(200).send(Promise.resolve())
+      res.send(Promise.resolve())
   });
 });
 
 // GET route -> send generated PDF to client...
-app.get("/information/fetch-pdf", (req, res) => {
+app.get("/information/fetchPdf", (req, res) => {
   const file = `${__dirname}/Resume.pdf`;
   res.download(file)
 });

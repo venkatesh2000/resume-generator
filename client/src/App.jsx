@@ -16,10 +16,10 @@ import axios from "axios";
 
 const getPdfViewer = (resume, setPdfUrl) => {
   axios
-    .post("http://localhost:5000/information/create-pdf", resume)
+    .post("http://localhost:5000/information/createPdf", resume)
     .then(() => {
       axios
-        .get("http://localhost:5000/information/fetch-pdf", {
+        .get("http://localhost:5000/information/fetchPdf", {
           responseType: "arraybuffer",
         })
         .then((res) => {
@@ -28,11 +28,11 @@ const getPdfViewer = (resume, setPdfUrl) => {
           setPdfUrl(url);
         })
         .catch(() => {
-          alert("Sorry, Unable to display PDF!!");
+          alert("Sorry, unable to display PDF!!");
         });
     })
     .catch(() => {
-      alert("Sorry, Unable to generate PDF!!");
+      alert("Sorry, unable to generate PDF!!");
     });
 };
 
@@ -44,21 +44,26 @@ const storeDetails = (resume) => {
   axios
     .post("http://localhost:5000/information/postDetails", resume)
     .then(() => {
-      alert("Details saved successfully in the database!!");
+      alert("Details saved in the database successfully!!");
     })
     .catch(() => {
-      alert("Sorry, Unable to store your Resume data in the database!!");
+      alert("Sorry, unable to store your Resume data in the database!!");
     });
 };
 
-const getDetails = () => {
+const getDetails = (setResume, setReadDb) => {
   let pathName = window.location.pathname;
   pathName = pathName.split("/")[2];
-  const res = axios.post("http://localhost:5000/information/getDetails", {
-    pathName,
-  });
-
-  return res;
+  axios
+    .post("http://localhost:5000/information/getDetails", {
+      pathName,
+    })
+    .then((res) => {
+      if (res.status === 200) setResume({ ...res.data });
+    })
+    .finally(() => {
+      setReadDb(false);
+    });
 };
 
 const getForm = (
@@ -156,6 +161,7 @@ const App = () => {
   const [oldNumberOfExps, setOldNumberOfExps] = React.useState(0);
   const [numberOfExps, setNumberOfExps] = React.useState(0);
   const [pdfUrl, setPdfUrl] = React.useState("");
+  const [readDb, setReadDb] = React.useState(true);
   const stepNames = [
     "Personal Info",
     "Education",
@@ -166,57 +172,53 @@ const App = () => {
   ];
   const optionalSteps = [3];
   React.useEffect(() => {
-    const res = getDetails();
-    res.then((res) => {
-      if (res.status === 200) {
-        setResume({ ...res.data });
-        // console.log(res.data);
-      }
-    });
-  }, []);
-  React.useEffect(() => {
     if (step === 5) {
       getPdfViewer(resume, setPdfUrl);
       storeDetails(resume);
     }
   }, [step]);
 
-  return (
-    <Router>
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/login">
-          <NavBar />
-          <Login />
-        </Route>
-        <Route path="/signup">
-          <NavBar />
-          <Signup />
-        </Route>
-        <Route path="/information/:userId">
-          <Information
-            resume={resume}
-            setResume={setResume}
-            step={step}
-            stepNames={stepNames}
-            optionalSteps={optionalSteps}
-            step={step}
-            setStep={setStep}
-            oldNumberOfExps={oldNumberOfExps}
-            setOldNumberOfExps={setOldNumberOfExps}
-            numberOfExps={numberOfExps}
-            setNumberOfExps={setNumberOfExps}
-            maxSteps={stepNames.length}
-            pdfUrl={pdfUrl}
-            setPdfUrl={setPdfUrl}
-            getForm={getForm}
-          />
-        </Route>
-      </Switch>
-    </Router>
-  );
+  if (readDb) {
+    getDetails(setResume, setReadDb);
+    return <div>Loading...</div>;
+  } else {
+    return (
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/login">
+            <NavBar />
+            <Login />
+          </Route>
+          <Route path="/signup">
+            <NavBar />
+            <Signup />
+          </Route>
+          <Route path="/information/:userId">
+            <Information
+              resume={resume}
+              setResume={setResume}
+              step={step}
+              stepNames={stepNames}
+              optionalSteps={optionalSteps}
+              step={step}
+              setStep={setStep}
+              oldNumberOfExps={oldNumberOfExps}
+              setOldNumberOfExps={setOldNumberOfExps}
+              numberOfExps={numberOfExps}
+              setNumberOfExps={setNumberOfExps}
+              maxSteps={stepNames.length}
+              pdfUrl={pdfUrl}
+              setPdfUrl={setPdfUrl}
+              getForm={getForm}
+            />
+          </Route>
+        </Switch>
+      </Router>
+    );
+  }
 };
 
 export default App;

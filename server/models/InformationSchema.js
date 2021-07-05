@@ -34,11 +34,11 @@ const UserInformationSchema = mongoose.Schema({
     required: true,
   },
   from: {
-    type: Number,
+    type: String,
     required: true,
   },
   to: {
-    type: Number,
+    type: String,
     required: true,
   },
   degree: {
@@ -46,7 +46,7 @@ const UserInformationSchema = mongoose.Schema({
     required: true,
   },
   cgpa: {
-    type: Number,
+    type: String,
     required: true,
   },
   s1: {

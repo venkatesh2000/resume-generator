@@ -48,20 +48,18 @@ const Education = (props) => {
     setIsValidated(false);
 
     const newErrors = {
-      name: false,
-      email: false,
-      pno: false,
-      github: false,
-      linkedin: false,
-      website: false,
+      college: false,
+      degree: false,
+      cgpa: false,
+      from: false,
+      to: false,
     };
     const newErrorMessages = {
-      name: "",
-      email: "",
-      pno: "",
-      github: "",
-      linkedin: "",
-      website: "",
+      college: "",
+      degree: "",
+      cgpa: "",
+      from: "",
+      to: "",
     };
 
     if (!values.college.length) {
