@@ -51,7 +51,7 @@ const storeDetails = (resume) => {
     });
 };
 
-const getDetails = (setResume, setReadDb) => {
+const getDetails = (setResume, setNumberOfExps, setReadDb) => {
   let pathName = window.location.pathname;
   pathName = pathName.split("/")[2];
   axios
@@ -59,7 +59,10 @@ const getDetails = (setResume, setReadDb) => {
       pathName,
     })
     .then((res) => {
-      if (res.status === 200) setResume({ ...res.data });
+      if (res.status === 200 && res.data !== null) {
+        setResume({ ...res.data });
+        setNumberOfExps(res.data["exps"]);
+      }
     })
     .finally(() => {
       setReadDb(false);
@@ -179,7 +182,7 @@ const App = () => {
   }, [step]);
 
   if (readDb) {
-    getDetails(setResume, setReadDb);
+    getDetails(setResume, setNumberOfExps, setReadDb);
     return <div>Loading...</div>;
   } else {
     return (

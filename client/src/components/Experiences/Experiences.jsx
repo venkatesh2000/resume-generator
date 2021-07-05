@@ -127,7 +127,7 @@ const Experiences = (props) => {
     if (!flag) {
       setOldNumberOfExps(numberOfExps);
       setNumberOfExps(exps);
-      setResume({ ...resume, ...values });
+      setResume({ ...resume, ...values, exps: exps });
       setStep(step + 1);
     }
   };

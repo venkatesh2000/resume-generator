@@ -177,6 +177,10 @@ const UserInformationSchema = mongoose.Schema({
       required: false,
     },
   },
+  exps: {
+    type: Number,
+    required: true,
+  },
   p1: {
     title: {
       type: String,
