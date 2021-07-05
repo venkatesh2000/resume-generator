@@ -12,7 +12,7 @@ const pdfTemplate = require("../client/src/sample-resumes/1.js");
 const options = {
   height: "45cm",
   width: "35cm",
-  timeout: "10000",
+  timeout: "20000",
 };
 
 const app = express();

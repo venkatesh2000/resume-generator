@@ -155,7 +155,7 @@ const resumeTemplate = (resume) => {
                 height: 120px;
                 text-align: center;
                 font-family: "Roboto Slab";
-                font-size: 58px;
+                font-size: 32px;
                 letter-spacing: 8px;
                 font-weight: 100;
                 line-height: 60px;
@@ -228,7 +228,7 @@ const resumeTemplate = (resume) => {
                 padding-left: 10px;
                 margin-bottom: 0px;
                 cursor: pointer;
-                font-size: 15px
+                font-size: 12px
             }
 
             .side-header {
@@ -341,13 +341,13 @@ const resumeTemplate = (resume) => {
                     <p class="logo-text">${logo}</p>
                 </div>
                 </div>
-                <p class="mb-1">
-                <span style="padding-right: 10px"
+                <p class="mb-1" style="font-size: 15px">
+                <span style="padding-right: 10px; font-size: 15px"
                     ><i class="fas fa-envelope"></i></span
                 >${email}
                 </p>
-                <p class="mb-1">
-                <span style="padding-right: 10px"
+                <p class="mb-1" style="font-size: 15px">
+                <span style="padding-right: 10px; font-size: 15px"
                     ><i class="fas fa-phone-square-alt"></i></span
                 >${pno}
                 </p>`
@@ -357,21 +357,21 @@ const resumeTemplate = (resume) => {
 
         if (website !== "") {
             html += `<p class="rela-block social mb-0">
-                <span style="padding-right: 15px; font-size: 15px"
+                <span style="padding-right: 15px; font-size: 12px"
                     ><i class="fas fa-globe"></i></span
                 ><span><a href="${website}">${website}</a></span>
                 </p>`
         }
         if (linkedin !== "") {
             html += `<p class="rela-block social mb-0">
-                <span style="padding-right: 15px; font-size: 15px"
+                <span style="padding-right: 15px; font-size: 12px"
                     ><i class="fab fa-linkedin"></i></span
                 ><span><a href="${linkedin}">${linkedin}</a></span>
                 </p>`
         }
         if (github !== "") {
             html += `<p class="rela-block social mb-0">
-                <span style="padding-right: 15px; font-size: 15px"
+                <span style="padding-right: 15px; font-size: 12px"
                     ><i class="fab fa-github"></i></span
                 ><span><a href="${github}">${github}</a></span>
                 </p>`
@@ -400,29 +400,16 @@ const resumeTemplate = (resume) => {
         <p class="list-spacing list-constraint">${remainingSkills[4] === undefined || remainingSkills[4] === "" ? "" : remainingSkills[4]}</p>
         <p class="list-spacing list-constraint">${remainingSkills[5] === undefined || remainingSkills[5] === "" ? "" : remainingSkills[5]}</p>
         </div>
-        <!-- 			<p class="rela-block caps side-header">Interests</p>
-            <p class="rela-block list-spacing">Coding</p>
-            <p class="rela-block list-spacing">Chess</p> -->
-
-        <!-- 			<p class="rela-block caps side-header">Languages</p>
-            <div class="horizontal-list">
-                <p class="list-spacing list-constraint">English</p>
-                <p class="list-spacing list-constraint">Tamil</p>
-            </div>
-            <div class="horizontal-list">
-                <p class="list-spacing list-constraint">Kannada</p>
-                <p class="list-spacing list-constraint">Hindi</p>
-            </div> -->
+        
         </div>
         <div class="rela-block content-container">
         <div class="rela-block caps greyed">Education</div>
-        <h3 class="mb-0">${college}</h3>
+        <h3 class="mb-1">${college}</h3>
         <p class="justified mt-0 mb-1" style="font-size: 17px">
-            ${degree}<span class="ml-5 pl-5" style="float: right"
-            >${from} <span class="mx-2">to</span> ${to}</span
-            >
+            ${degree}
         </p>
-        <p class="justified mt-0 mb-3" style="font-size: 17px">${cgpa} CGPA</p>`
+        <p class="justified mt-0 mb-1" style="font-size: 17px">${from}<span class="mx-2" style="font-size: 17px">to</span>${to}</p>
+        <p class="justified mt-0 mb-3" style="font-size: 15px">${cgpa} CGPA</p>`
 
     if (exps.length !== 0) {
         html += `<div class="rela-block caps greyed">Experience</div>`
@@ -430,12 +417,11 @@ const resumeTemplate = (resume) => {
         for (let exp of exps) {
             html += `
             <h3>${exp["company"]}</h3>
-            <p class="text-muted light mt-1 mb-2" style="font-size: 17px">
-                ${exp["role"]}<span class="ml-5 pl-5" style="float: right"
-                >${exp["from"]}<span class="mx-2">to</span> ${exp["to"]}</span
-                >
+            <p class="mt-1 mb-1" style="font-size: 17px">
+                ${exp["role"]}
             </p>
-            <p class="justified" style="font-size: 17px">
+            <p class="justified mt-0 mb-3" style="font-size: 17px">${exp["from"]}<span class="mx-2" style="font-size: 17px">to</span>${exp["to"]}</p>
+            <p class="justified" style="font-size: 15px">
                 ${exp["desc"]}
             </p>`
         }
@@ -447,14 +433,14 @@ const resumeTemplate = (resume) => {
         for (let pro of pros) {
             html += `
             <h3>${pro["title"]}</h3>
-            <p class="text-muted mt-1 mb-2" style="font-size: 17px">
+            <p class="text-muted mt-1 mb-1" style="font-size: 17px">
                 <span class="mr-2"><i class="fas fa-link"></i></span
                 ><span><a href="${pro["link"]}">${pro["link"]}</a></span>
-                <span class="ml-5 pl-5" style="float: right">
-                ${pro["from"]}<span class="mx-2">to</span> 
-                ${pro["to"]}</span>
             </p>
-            <p class="justified" style="font-size: 17px">
+            <p class="justified mt-0 mb-3" style="font-size: 17px">
+                ${pro["from"]}<span class="mx-2">to</span>${pro["to"]}
+            </p>
+            <p class="justified" style="font-size: 15px">
                 ${pro["desc"]}
             </p> `
         }

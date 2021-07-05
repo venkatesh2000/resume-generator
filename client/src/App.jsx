@@ -143,7 +143,7 @@ const getForm = (
       );
 
     default: {
-      const pdfViewer = `<iframe src="${pdfUrl}" type="application/pdf" width=1200px height=1200px></iframe>`;
+      const pdfViewer = `<iframe src="${pdfUrl}" type="application/pdf" width=50% height=1200px></iframe>`;
 
       return (
         <Preview

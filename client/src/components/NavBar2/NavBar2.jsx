@@ -50,7 +50,7 @@ function NavBar2() {
             style={{ textDecoration: "none", color: "inherit" }}
           >
             <button type="button" className="btn btn-info topListItem">
-              LOGOUT
+              Logout
             </button>
           </Link>
           <button
