@@ -12,9 +12,9 @@
 .statement {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   font-family: "Lora", "serif";
-  /* color: #321f28; */
   color: black;
   text-align: center;
   margin-top: 5rem;

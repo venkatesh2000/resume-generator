@@ -16,17 +16,18 @@ function Home() {
       </div>
       <div className="statement">
         <h2 className="bigStatement">
-          " Only 2% of resumes make it past the first round. Be in the top 2%. "
+          " Only 2% of the resumes make it past the first round. Be in the top
+          2%. "
         </h2>
         <h4 className="smallStatement">
-          Save your time and effort with this easy to use Resume Builder to
-          build your custom style professional resume and apply for your dream
-          job in easy and fast in just three easy steps.
+          Journey to your dream company is hard. Now make it a little smoother
+          with this easy-to-use Resume Builder to build your very own
+          professional resume in just three simple steps:
         </h4>
         <div className="steps">
-          <h3>1. Enter your information</h3>
+          <h3>1. Enter your Information</h3>
           <i class="fas fa-arrow-down"></i>
-          <h3>2. Choose your template</h3>
+          <h3>2. Preview your Resume</h3>
           <i class="fas fa-arrow-down"></i>
           <h3>3. Download your Resume</h3>
         </div>
