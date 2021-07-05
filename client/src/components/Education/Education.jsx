@@ -131,6 +131,7 @@ const Education = (props) => {
           <form className={classes.root} autoComplete="on">
             <TextField
               label="College"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.college}
               onChange={(event) => onValueChange("college", event)}
@@ -140,6 +141,7 @@ const Education = (props) => {
             />
             <TextField
               label="Degree"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.degree}
               onChange={(event) => onValueChange("degree", event)}
@@ -149,6 +151,7 @@ const Education = (props) => {
             />
             <TextField
               label="CGPA"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.cgpa}
               onChange={(event) => onValueChange("cgpa", event)}
@@ -158,6 +161,7 @@ const Education = (props) => {
             />
             <TextField
               label="Joining Year"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.from}
               onChange={(event) => onValueChange("from", event)}
@@ -167,6 +171,7 @@ const Education = (props) => {
             />
             <TextField
               label="Year of Graduation"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.to}
               onChange={(event) => onValueChange("to", event)}

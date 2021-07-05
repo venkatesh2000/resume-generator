@@ -137,6 +137,7 @@ const PersonalInfo = (props) => {
           <form className={classes.root} autoComplete="on">
             <TextField
               label="Name"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.name}
               onChange={(event) => onValueChange("name", event)}
@@ -146,6 +147,7 @@ const PersonalInfo = (props) => {
             />
             <TextField
               label="E-mail"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.email}
               onChange={(event) => onValueChange("email", event)}
@@ -155,6 +157,7 @@ const PersonalInfo = (props) => {
             />
             <TextField
               label="Phone Number"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.pno}
               onChange={(event) => onValueChange("pno", event)}
@@ -171,6 +174,7 @@ const PersonalInfo = (props) => {
           <form className={classes.root} autoComplete="on">
             <TextField
               label="GitHub URL"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.github}
               onChange={(event) => onValueChange("github", event)}
@@ -179,6 +183,7 @@ const PersonalInfo = (props) => {
             />
             <TextField
               label="LinkedIn URL"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.linkedin}
               onChange={(event) => onValueChange("linkedin", event)}
@@ -187,6 +192,7 @@ const PersonalInfo = (props) => {
             />
             <TextField
               label="Website URL"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.website}
               onChange={(event) => onValueChange("website", event)}

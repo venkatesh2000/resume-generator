@@ -12,8 +12,7 @@ const handleClick = () => {
     })
     .then((res) => {
       if (res.status === 200) {
-        // window.location.replace("/");
-        console.log("deleted");
+        alert("Deleted account successfully!!");
       }
     });
   window.location.replace("/");
@@ -28,15 +27,7 @@ function NavBar2() {
       </div>
       <div className="topCenter">
         <ul className="topList">
-          <li className="topListItem">
-            <Link
-              className="link"
-              to="/"
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              Home
-            </Link>
-          </li>
+          <li className="topListItem">Home</li>
           <li className="topListItem">Getting Started</li>
           <li className="topListItem">Resume Review</li>
           <li className="topListItem">Contact Us</li>

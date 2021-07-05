@@ -29,6 +29,7 @@ const Project = (props) => {
           <form className={classes.root} autoComplete="on">
             <TextField
               label="Title"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.title}
               onChange={(event) => onValueChange("title", event)}
@@ -37,6 +38,7 @@ const Project = (props) => {
             />
             <TextField
               label="Link"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.link}
               onChange={(event) => onValueChange("link", event)}
@@ -45,6 +47,7 @@ const Project = (props) => {
             />
             <TextField
               label="Start Month and Year"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.from}
               onChange={(event) => onValueChange("from", event)}
@@ -53,6 +56,7 @@ const Project = (props) => {
             />
             <TextField
               label="End Month and Year"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.to}
               onChange={(event) => onValueChange("to", event)}
@@ -61,6 +65,7 @@ const Project = (props) => {
             />
             <TextField
               label="Description"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.desc}
               onChange={(event) => onValueChange("desc", event)}

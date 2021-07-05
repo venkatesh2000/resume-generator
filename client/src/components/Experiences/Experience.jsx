@@ -29,6 +29,7 @@ const Experience = (props) => {
           <form className={classes.root} autoComplete="on">
             <TextField
               label="Company"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.company}
               onChange={(event) => onValueChange("company", event)}
@@ -37,6 +38,7 @@ const Experience = (props) => {
             />
             <TextField
               label="Role"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.role}
               onChange={(event) => onValueChange("role", event)}
@@ -45,6 +47,7 @@ const Experience = (props) => {
             />
             <TextField
               label="Start Month and Year"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.from}
               onChange={(event) => onValueChange("from", event)}
@@ -53,6 +56,7 @@ const Experience = (props) => {
             />
             <TextField
               label="End Month and Year"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.to}
               onChange={(event) => onValueChange("to", event)}
@@ -61,6 +65,7 @@ const Experience = (props) => {
             />
             <TextField
               label="Description"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.desc}
               onChange={(event) => onValueChange("desc", event)}

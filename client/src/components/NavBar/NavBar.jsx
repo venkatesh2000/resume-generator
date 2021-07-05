@@ -11,15 +11,7 @@ function NavBar() {
       </div>
       <div className="topCenter">
         <ul className="topList">
-          <li className="topListItem">
-            <Link
-              className="link"
-              to="/"
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              Home
-            </Link>
-          </li>
+          <li className="topListItem">Home</li>
           <li className="topListItem">Getting Started</li>
           <li className="topListItem">Resume Review</li>
           <li className="topListItem">Contact Us</li>

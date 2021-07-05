@@ -113,6 +113,7 @@ const Skills = (props) => {
           <form className={classes.root} autoComplete="on">
             <TextField
               label="Skill 1"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.s1}
               onChange={(event) => onValueChange("s1", event)}
@@ -122,6 +123,7 @@ const Skills = (props) => {
             />
             <TextField
               label="Skill 2"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.s2}
               onChange={(event) => onValueChange("s2", event)}
@@ -131,6 +133,7 @@ const Skills = (props) => {
             />
             <TextField
               label="Skill 3"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.s3}
               onChange={(event) => onValueChange("s3", event)}
@@ -140,6 +143,7 @@ const Skills = (props) => {
             />
             <TextField
               label="Skill 4"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.s4}
               onChange={(event) => onValueChange("s4", event)}
@@ -156,36 +160,42 @@ const Skills = (props) => {
           <form className={classes.root} autoComplete="on">
             <TextField
               label="Skill 5"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.s5}
               onChange={(event) => onValueChange("s5", event)}
             />
             <TextField
               label="Skill 6"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.s6}
               onChange={(event) => onValueChange("s6", event)}
             />
             <TextField
               label="Skill 7"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.s7}
               onChange={(event) => onValueChange("s7", event)}
             />
             <TextField
               label="Skill 8"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.s8}
               onChange={(event) => onValueChange("s8", event)}
             />
             <TextField
               label="Skill 9"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.s9}
               onChange={(event) => onValueChange("s9", event)}
             />
             <TextField
               label="Skill 10"
+              InputLabelProps={{ style: { fontSize: 12 } }}
               variant="outlined"
               value={values.s10}
               onChange={(event) => onValueChange("s10", event)}
