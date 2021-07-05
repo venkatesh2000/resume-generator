@@ -48,13 +48,30 @@ app.post("/information/postDetails", (req, res) => {
 
 //Route to get user details
 app.post("/information/getDetails", (req, res) => {
-  UserInformationSchema.findOne({ userId: req.body.pathName }, function (
-    err,
-    userDetails
-  ) {
-    if (err) res.status(500).json(err);
-    else res.status(200).json(userDetails);
-  });
+  UserInformationSchema.findOne(
+    { userId: req.body.pathName },
+    (err, userDetails) => {
+      if (err) res.status(500).json(err);
+      else res.status(200).json(userDetails);
+    }
+  );
+});
+
+// Route to delete user resume
+app.post("/information/deleteDetails", (req, res) => {
+  UserInformationSchema.findOneAndDelete({ userId: req.body.pathName })
+    .then((deletedDetails) => {
+      if (deletedDetails)
+        res
+          .status(200)
+          .send("Deleted resume details from the database successfully!!");
+      else res.status(200).send("Nothing to delete in the database!!");
+    })
+    .catch((_) => {
+      res
+        .status(500)
+        .send("Sorry, unable to delete resume details from the database!!");
+    });
 });
 
 app.get("/", (req, res) => {

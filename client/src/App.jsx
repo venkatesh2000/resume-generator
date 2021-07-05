@@ -13,6 +13,7 @@ import Login from "./pages/Login/Login.jsx";
 import Signup from "./pages/Signup/Signup.jsx";
 import Information from "./pages/Information/Information.jsx";
 import axios from "axios";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const getPdfViewer = (resume, setPdfUrl) => {
   axios
@@ -183,7 +184,11 @@ const App = () => {
 
   if (readDb) {
     getDetails(setResume, setNumberOfExps, setReadDb);
-    return <div>Loading...</div>;
+    return (
+      <div className="cpb">
+        <CircularProgress />
+      </div>
+    );
   } else {
     return (
       <Router>
