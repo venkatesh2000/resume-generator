@@ -12,10 +12,15 @@ const handleClick = () => {
     })
     .then((res) => {
       if (res.status === 200) {
-        alert("Deleted account successfully!!");
+        window.location.replace("/");
+        alert(res.data);
+      } else {
+        alert("Sorry, unable to delete account!!");
       }
+    })
+    .catch(() => {
+      alert("Sorry, unable to delete account!!");
     });
-  window.location.replace("/");
 };
 
 function NavBar2() {

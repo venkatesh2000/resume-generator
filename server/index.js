@@ -94,21 +94,24 @@ app.get("/information/fetchPdf", (req, res) => {
 
 //Route to delete user account
 app.post("/information/deleteAccount", (req, res) => {
-  User.findByIdAndDelete(req.body.pathName, (err) => {
-    if (err) {
-      // console.log(err);
-      res.status(500).json(err);
-    }
-  });
   UserInformationSchema.findOneAndDelete(
     { userId: req.body.pathName },
     (err) => {
       if (err) {
         res.status(500).json(err);
       }
+      else {
+        User.findByIdAndDelete(req.body.pathName, (err) => {
+          if (err) {
+            res.status(500).json(err);
+          }
+          else {
+            res.status(200).send("Deleted account successfully!!")
+          }
+        });
+      }
     }
   );
-  res.status(200);
 });
 
 app.listen("5000", () => {
