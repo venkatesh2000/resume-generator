@@ -4,10 +4,10 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const pdf = require("html-pdf");
 
-const authRoute = require("../server/routes/auth.js");
-const User = require("../server/models/User.js");
-const UserInformationSchema = require("../server/models/InformationSchema.js");
-const pdfTemplate = require("../client/src/sample-resumes/1.js");
+const authRoute = require("./routes/auth.js");
+const User = require("./models/User.js");
+const UserInformationSchema = require("./models/InformationSchema.js");
+const pdfTemplate = require("./sample-resumes/1.js");
 
 const options = {
   height: "45cm",
