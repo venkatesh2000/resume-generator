@@ -1,6 +1,7 @@
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import axios from "axios";
 import "./NavButtons.css";
 
 const NavButtons = (props) => {
@@ -24,8 +25,21 @@ const NavButtons = (props) => {
 
   const handleBack = () => setStep(step - 1);
   const handleReset = () => {
-    setResume({});
-    setStep(0);
+    let pathName = window.location.pathname;
+    pathName = pathName.split("/")[2];
+
+    axios
+      .post("http://localhost:5000/information/deleteDetails", { pathName })
+      .then((res) => {
+        alert(res.data);
+      })
+      .catch((_) => {
+        alert("Sorry, unable to delete resume details from the database!!");
+      })
+      .finally(() => {
+        setResume({});
+        setStep(0);
+      });
   };
 
   return (
