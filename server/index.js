@@ -13,6 +13,7 @@ const options = {
   height: "45cm",
   width: "35cm",
   timeout: "20000",
+  phantomPath: "/usr/local/bin/phantomjs",
 };
 
 const app = express();

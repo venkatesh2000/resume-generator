@@ -4,7 +4,6 @@
   "description": "Server for Resume Generator web app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
   },
   "repository": {
@@ -24,6 +23,8 @@
     "express": "^4.17.1",
     "html-pdf": "^3.0.1",
     "mongoose": "^5.13.2",
-    "nodemon": "^2.0.9"
+    "nodemon": "^2.0.9",
+    "phantomjs-prebuilt": "^2.1.16",
+    "requireg": "^0.2.2"
   }
 }
