@@ -16,7 +16,7 @@ export default function Login(props) {
     setError(false);
     try {
       const res = await axios.post(
-        "https://resume-generator-web-app.herokuapp.com/auth/login",
+        "https://resume-generator-server.herokuapp.com/auth/login",
         {
           email,
           password,

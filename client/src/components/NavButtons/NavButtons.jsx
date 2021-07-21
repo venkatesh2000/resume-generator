@@ -30,7 +30,7 @@ const NavButtons = (props) => {
 
     axios
       .post(
-        "https://resume-generator-web-app.herokuapp.com/information/deleteDetails",
+        "https://resume-generator-server.herokuapp.com/information/deleteDetails",
         { pathName }
       )
       .then((res) => {

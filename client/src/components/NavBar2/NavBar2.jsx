@@ -8,7 +8,7 @@ const handleClick = () => {
   pathName = pathName.split("/")[2];
   axios
     .post(
-      "https://resume-generator-web-app.herokuapp.com/information/deleteAccount",
+      "https://resume-generator-server.herokuapp.com/information/deleteAccount",
       {
         pathName,
       }

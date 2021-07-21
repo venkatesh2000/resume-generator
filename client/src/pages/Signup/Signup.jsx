@@ -13,7 +13,7 @@ export default function Signup() {
     setError(false);
     try {
       const res = await axios.post(
-        "https://resume-generator-web-app.herokuapp.com/auth/register",
+        "https://resume-generator-server.herokuapp.com/auth/register",
         {
           username,
           email,

@@ -18,13 +18,13 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 const getPdfViewer = (resume, setPdfUrl) => {
   axios
     .post(
-      "https://resume-generator-web-app.herokuapp.com/information/createPdf",
+      "https://resume-generator-server.herokuapp.com/information/createPdf",
       resume
     )
     .then(() => {
       axios
         .get(
-          "https://resume-generator-web-app.herokuapp.com/information/fetchPdf",
+          "https://resume-generator-server.herokuapp.com/information/fetchPdf",
           {
             responseType: "arraybuffer",
           }
@@ -50,7 +50,7 @@ const storeDetails = (resume) => {
 
   axios
     .post(
-      "https://resume-generator-web-app.herokuapp.com/information/postDetails",
+      "https://resume-generator-server.herokuapp.com/information/postDetails",
       resume
     )
     .then(() => {
@@ -66,7 +66,7 @@ const getDetails = (setResume, setNumberOfExps, setReadDb) => {
   pathName = pathName.split("/")[2];
   axios
     .post(
-      "https://resume-generator-web-app.herokuapp.com/information/getDetails",
+      "https://resume-generator-server.herokuapp.com/information/getDetails",
       {
         pathName,
       }
