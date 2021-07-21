@@ -17,12 +17,18 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 const getPdfViewer = (resume, setPdfUrl) => {
   axios
-    .post("http://localhost:5000/information/createPdf", resume)
+    .post(
+      "https://resume-generator-web-app.herokuapp.com/information/createPdf",
+      resume
+    )
     .then(() => {
       axios
-        .get("http://localhost:5000/information/fetchPdf", {
-          responseType: "arraybuffer",
-        })
+        .get(
+          "https://resume-generator-web-app.herokuapp.com/information/fetchPdf",
+          {
+            responseType: "arraybuffer",
+          }
+        )
         .then((res) => {
           const pdfBlob = new Blob([res.data], { type: "application/pdf" });
           const url = URL.createObjectURL(pdfBlob);
@@ -43,7 +49,10 @@ const storeDetails = (resume) => {
   resume["userId"] = pathName;
 
   axios
-    .post("http://localhost:5000/information/postDetails", resume)
+    .post(
+      "https://resume-generator-web-app.herokuapp.com/information/postDetails",
+      resume
+    )
     .then(() => {
       alert("Details saved in the database successfully!!");
     })
@@ -56,9 +65,12 @@ const getDetails = (setResume, setNumberOfExps, setReadDb) => {
   let pathName = window.location.pathname;
   pathName = pathName.split("/")[2];
   axios
-    .post("http://localhost:5000/information/getDetails", {
-      pathName,
-    })
+    .post(
+      "https://resume-generator-web-app.herokuapp.com/information/getDetails",
+      {
+        pathName,
+      }
+    )
     .then((res) => {
       if (res.status === 200 && res.data !== null) {
         setResume({ ...res.data });

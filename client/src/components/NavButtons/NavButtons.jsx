@@ -29,7 +29,10 @@ const NavButtons = (props) => {
     pathName = pathName.split("/")[2];
 
     axios
-      .post("http://localhost:5000/information/deleteDetails", { pathName })
+      .post(
+        "https://resume-generator-web-app.herokuapp.com/information/deleteDetails",
+        { pathName }
+      )
       .then((res) => {
         alert(res.data);
       })

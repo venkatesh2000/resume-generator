@@ -12,11 +12,14 @@ export default function Signup() {
     e.preventDefault();
     setError(false);
     try {
-      const res = await axios.post("http://localhost:5000/auth/register", {
-        username,
-        email,
-        password,
-      });
+      const res = await axios.post(
+        "https://resume-generator-web-app.herokuapp.com/auth/register",
+        {
+          username,
+          email,
+          password,
+        }
+      );
       res.data && window.location.replace("/login");
     } catch (err) {
       setError(true);

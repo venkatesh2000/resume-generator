@@ -7,9 +7,12 @@ const handleClick = () => {
   let pathName = window.location.pathname;
   pathName = pathName.split("/")[2];
   axios
-    .post("http://localhost:5000/information/deleteAccount", {
-      pathName,
-    })
+    .post(
+      "https://resume-generator-web-app.herokuapp.com/information/deleteAccount",
+      {
+        pathName,
+      }
+    )
     .then((res) => {
       if (res.status === 200) {
         window.location.replace("/");

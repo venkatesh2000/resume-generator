@@ -15,10 +15,13 @@ export default function Login(props) {
     e.preventDefault();
     setError(false);
     try {
-      const res = await axios.post("http://localhost:5000/auth/login", {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        "https://resume-generator-web-app.herokuapp.com/auth/login",
+        {
+          email,
+          password,
+        }
+      );
 
       if (res.data) {
         setUserID(res.data._id);
